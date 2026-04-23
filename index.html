@@ -6,11 +6,11 @@
 <title>Suresh Vizhal — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 <style>
-/* AE-Inspired CSS */
+/* PRECISE CSS FROM ORIGINAL FILE */
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --bg0:#0a0a0a;--bg1:#111;--bg2:#181818;--bg3:#1f1f1f;--bg4:#272727;
@@ -20,189 +20,484 @@
   --acc-glow:rgba(45,135,255,0.25);
   --green:#3ecf6e;--orange:#e8854a;--purple:#a855f7;--red:#f04545;--teal:#3ecfb8;
   --font:'JetBrains Mono',monospace;
+  --ai-glow:rgba(45,135,255,0.12);
 }
-html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);font-family:var(--font);color:var(--t1);}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 #root{width:100%;height:100%;display:flex;flex-direction:column;}
-.app{display:grid;grid-template-rows:26px 30px 1fr 210px;grid-template-columns:1fr;height:100vh;}
+.app{display:grid;grid-template-rows:26px 30px 1fr 210px;grid-template-columns:1fr;height:100vh;font-family:var(--font);font-size:14px;color:var(--t1);background:var(--bg0);user-select:none;}
 .menubar{background:var(--bg1);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;gap:2px;z-index:100;}
 .menubar-brand{font-size:12px;font-weight:700;color:var(--acc);letter-spacing:.08em;margin-right:10px;padding:2px 6px;border:1px solid var(--b2);border-radius:2px;}
-.menubar-item{padding:3px 8px;cursor:pointer;color:var(--t2);font-size:11px;border-radius:2px;transition:all .15s;}
+.menubar-item{padding:3px 8px;cursor:pointer;color:var(--t2);font-size:12px;border-radius:2px;transition:all .15s;}
 .menubar-item:hover{background:var(--bg4);color:var(--t1);}
-.toolbar{background:var(--bg2);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;gap:1px;font-size:11px;color:var(--t3);}
+.menubar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.ai-badge{display:flex;align-items:center;gap:5px;padding:3px 8px;border-radius:2px;border:1px solid var(--b2);cursor:pointer;font-size:12px;font-weight:600;letter-spacing:.05em;transition:all .2s;}
+.ai-badge.active{border-color:var(--acc);color:var(--acc);background:var(--acc2);box-shadow:0 0 12px var(--acc-glow);}
+.ai-badge.inactive{color:var(--t3);}
+.ai-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+.ai-dot.pulse{animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.time-display{font-size:12px;color:var(--t3);letter-spacing:.05em;}
+.toolbar{background:var(--bg2);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;gap:1px;}
+.tool-btn{width:26px;height:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:2px;color:var(--t3);font-size:12px;transition:all .15s;border:1px solid transparent;}
+.tool-btn:hover{background:var(--bg4);color:var(--t1);}
+.tool-btn.active{background:var(--bg4);color:var(--acc);border-color:var(--b2);}
+.tool-sep{width:1px;height:16px;background:var(--b2);margin:0 4px;}
+.toolbar-label{font-size:12px;color:var(--t3);padding:0 6px;letter-spacing:.06em;}
+.snap-toggle{display:flex;align-items:center;gap:4px;padding:2px 8px;font-size:12px;color:var(--t3);cursor:pointer;border-radius:2px;border:1px solid transparent;}
+.snap-toggle:hover{background:var(--bg3);}
+.ai-status{margin-left:auto;font-size:12px;color:var(--acc);opacity:0;transition:opacity .3s;letter-spacing:.04em;}
+.ai-status.visible{opacity:1;}
+.ai-status-text{animation:fadeText 3s ease-in-out infinite;}
+@keyframes fadeText{0%,100%{opacity:.5;}50%{opacity:1;}}
 .main-area{display:grid;grid-template-columns:240px 1fr 260px;overflow:hidden;border-bottom:1px solid var(--b1);}
-.panel{background:var(--bg1);display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--b1);}
-.panel-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:5px 8px;display:flex;align-items:center;gap:6px;flex-shrink:0;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;}
-.viewer{display:flex;flex-direction:column;position:relative;background:var(--bg0);}
-.viewer-content{flex:1;overflow:auto;padding:20px;}
-.timeline{background:var(--bg1);display:flex;flex-direction:column;border-top:1px solid var(--b1);}
-.comp-item{display:flex;align-items:center;gap:6px;padding:4px 8px;cursor:pointer;font-size:11px;color:var(--t2);}
-.comp-item.active{background:var(--acc3);color:var(--t1);border-left:2px solid var(--acc);}
-.project-card{border:1px solid var(--b1);border-radius:2px;overflow:hidden;background:var(--bg2);margin-bottom:10px;cursor:pointer;transition:all .2s;}
-.project-card:hover{border-color:var(--acc);}
-.project-thumb{height:120px;background:var(--bg3);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.panel{background:var(--bg1);display:flex;flex-direction:column;overflow:hidden;}
+.panel-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:5px 8px;display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.panel-title{font-size:12px;font-weight:600;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;}
+.panel-icon{width:12px;height:12px;border-radius:2px;background:var(--acc);opacity:.8;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:700;}
+.panel-controls{margin-left:auto;display:flex;gap:4px;}
+.panel-btn{width:16px;height:16px;border-radius:2px;border:1px solid var(--b2);background:var(--bg3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);}
+.panel-btn:hover{background:var(--bg4);color:var(--t1);}
+.project-panel{border-right:1px solid var(--b1);}
+.project-list{overflow-y:auto;flex:1;}
+.project-list::-webkit-scrollbar{width:4px;}
+.project-list::-webkit-scrollbar-track{background:var(--bg1);}
+.project-list::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px;}
+.proj-section{padding:6px 8px 2px;font-size:12px;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;border-top:1px solid var(--b1);}
+.proj-section:first-child{border-top:none;}
+.comp-item{display:flex;align-items:center;gap:6px;padding:4px 8px;cursor:pointer;border-left:2px solid transparent;transition:all .12s;position:relative;}
+.comp-item:hover{background:var(--bg3);}
+.comp-item.active{background:var(--acc3);border-left-color:var(--acc);}
+.comp-item.active .comp-name{color:var(--t1);}
+.comp-icon{width:12px;height:12px;border-radius:1px;flex-shrink:0;}
+.comp-name{font-size:12px;color:var(--t2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.comp-dur{font-size:12px;color:var(--t4);}
+.comp-tag{font-size:12px;padding:1px 4px;border-radius:2px;background:var(--acc2);color:var(--acc);font-weight:600;}
+.ai-hint{font-size:12px;color:var(--acc);opacity:0;transition:opacity .3s;padding:2px 8px 4px 26px;letter-spacing:.03em;}
+.ai-hint.show{opacity:.8;}
+.search-bar{padding:5px 8px;border-bottom:1px solid var(--b1);}
+.search-input{width:100%;background:var(--bg3);border:1px solid var(--b2);border-radius:2px;padding:3px 6px;font-family:var(--font);font-size:12px;color:var(--t1);outline:none;}
+.search-input:focus{border-color:var(--acc);}
+.search-input::placeholder{color:var(--t4);}
+.viewer{border-right:1px solid var(--b1);display:flex;flex-direction:column;position:relative;}
+.viewer-tab-bar{background:var(--bg2);border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:0;flex-shrink:0;overflow:hidden;}
+.viewer-tab{padding:5px 12px;font-size:12px;color:var(--t3);cursor:pointer;border-right:1px solid var(--b1);white-space:nowrap;transition:all .12s;display:flex;align-items:center;gap:5px;}
+.viewer-tab.active{background:var(--bg1);color:var(--t1);}
+.viewer-tab-dot{width:7px;height:7px;border-radius:50%;}
+.viewer-content{flex:1;overflow:hidden;position:relative;background:var(--bg0);}
+.viewer-footer{background:var(--bg2);border-top:1px solid var(--b1);padding:4px 10px;display:flex;align-items:center;gap:12px;flex-shrink:0;font-size:12px;color:var(--t3);}
+.viewer-btn{padding:2px 8px;border:1px solid var(--b2);border-radius:2px;cursor:pointer;background:var(--bg3);font-family:var(--font);font-size:12px;color:var(--t2);transition:all .12s;}
+.viewer-btn:hover{background:var(--bg4);color:var(--t1);}
+.viewer-btn.play{border-color:var(--acc);color:var(--acc);}
+.resolution-badge{margin-left:auto;padding:2px 6px;border:1px solid var(--b2);border-radius:2px;font-size:12px;color:var(--t3);}
+.comp-about{padding:20px;height:100%;overflow-y:auto;display:flex;flex-direction:column;gap:16px;}
+.comp-about::-webkit-scrollbar{width:4px;}
+.comp-about::-webkit-scrollbar-thumb{background:var(--b2);}
+.profile-header{display:flex;gap:16px;align-items:flex-start;}
+.profile-photo{width:80px;height:95px;background:var(--bg3);border:1px solid var(--b2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t4);font-family:var(--font);text-align:center;line-height:1.4;border-radius:1px;overflow:hidden;position:relative;}
+.profile-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.profile-info{flex:1;}
+.profile-name{font-size:20px;font-weight:700;color:var(--t1);letter-spacing:.02em;line-height:1;}
+.profile-title{font-size:12px;color:var(--acc);margin-top:4px;letter-spacing:.06em;font-weight:500;}
+.profile-bio{font-size:12px;color:var(--t2);margin-top:8px;line-height:1.6;font-family:'Space Grotesk',sans-serif;}
+.section-label{font-size:12px;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--b1);padding-bottom:4px;margin-bottom:8px;}
+.skill-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.skill-name{font-size:12px;color:var(--t2);width:100px;flex-shrink:0;}
+.skill-bar-bg{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:2px;transition:width .8s cubic-bezier(.4,0,.2,1);}
+.skill-pct{font-size:12px;color:var(--t3);width:28px;text-align:right;}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;}
+.tag{padding:2px 7px;border:1px solid var(--b2);border-radius:2px;font-size:12px;color:var(--t2);}
+.tag.highlight{border-color:var(--acc);color:var(--acc);background:var(--acc3);}
+.contact-item{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:12px;color:var(--t2);}
+.contact-icon{width:12px;height:12px;color:var(--acc);flex-shrink:0;font-size:12px;}
+.comp-work{padding:16px;height:100%;overflow-y:auto;}
+.comp-work::-webkit-scrollbar{width:4px;}
+.comp-work::-webkit-scrollbar-thumb{background:var(--b2);}
+.work-item{border:1px solid var(--b1);border-radius:2px;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:all .15s;}
+.work-item:hover{border-color:var(--b3);}
+.work-item.expanded{border-color:var(--b3);}
+.work-header{padding:8px 10px;display:flex;align-items:center;gap:8px;background:var(--bg2);}
+.work-color{width:8px;height:8px;border-radius:1px;flex-shrink:0;}
+.work-name{font-size:12px;font-weight:600;color:var(--t1);flex:1;}
+.work-role{font-size:12px;color:var(--t3);}
+.work-period{font-size:12px;color:var(--t4);margin-left:auto;}
+.work-body{padding:8px 10px;background:var(--bg1);border-top:1px solid var(--b1);}
+.work-desc{font-size:12px;color:var(--t2);line-height:1.6;font-family:'Space Grotesk',sans-serif;}
+.work-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
+.work-tag{font-size:12px;padding:1px 5px;border-radius:2px;background:var(--bg3);border:1px solid var(--b2);color:var(--t3);}
+.comp-projects{padding:16px;height:100%;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start;}
+.comp-projects::-webkit-scrollbar{width:4px;}
+.comp-projects::-webkit-scrollbar-thumb{background:var(--b2);}
+.project-card{border:1px solid var(--b1);border-radius:2px;overflow:hidden;cursor:pointer;transition:all .15s;}
+.project-card:hover{border-color:var(--acc);box-shadow:0 0 16px var(--acc3);}
+.project-thumb{height:90px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t4);text-align:center;position:relative;overflow:hidden;}
 .project-thumb img, .project-thumb video {width:100%;height:100%;object-fit:cover;}
-.project-info{padding:8px;}
-.project-name{font-size:12px;font-weight:700;}
-.project-client{font-size:10px;color:var(--acc);}
-.fade-in{animation:fadeIn 0.3s ease forwards;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+.project-thumb-label{font-size:12px;color:var(--t4);padding:4px;line-height:1.4;}
+.project-info{padding:7px 8px;background:var(--bg2);}
+.project-card-name{font-size:12px;font-weight:600;color:var(--t1);}
+.project-card-sub{font-size:12px;color:var(--t3);margin-top:2px;}
+.project-card-client{font-size:12px;color:var(--acc);margin-top:3px;}
+.comp-clients{padding:16px;height:100%;overflow-y:auto;}
+.clients-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.client-card{border:1px solid var(--b1);border-radius:2px;padding:12px;background:var(--bg2);transition:all .15s;}
+.client-card:hover{border-color:var(--b3);}
+.client-name{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:3px;}
+.client-location{font-size:12px;color:var(--t4);margin-bottom:8px;}
+.client-deliverables{font-size:12px;color:var(--t2);line-height:1.6;}
+.client-deliverables li{list-style:none;padding-left:0;}
+.client-deliverables li::before{content:"▸ ";color:var(--acc);}
+.comp-contact{padding:24px;height:100%;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;}
+.contact-card{border:1px solid var(--b2);border-radius:2px;padding:20px 28px;background:var(--bg2);width:100%;max-width:340px;}
+.contact-name-big{font-size:24px;font-weight:700;color:var(--t1);margin-bottom:4px;}
+.contact-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--b1);font-size:12px;color:var(--t2);}
+.contact-row:last-child{border-bottom:none;}
+.contact-lbl{font-size:12px;color:var(--t4);width:60px;flex-shrink:0;}
+.properties-panel{display:flex;flex-direction:column;overflow:hidden;}
+.prop-section{border-bottom:1px solid var(--b1);}
+.prop-section-header{padding:5px 8px;display:flex;align-items:center;gap:5px;cursor:pointer;background:var(--bg2);}
+.prop-section-title{font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;}
+.prop-chevron{font-size:7px;color:var(--t4);margin-left:auto;transition:transform .15s;}
+.prop-chevron.open{transform:rotate(90deg);}
+.prop-body{padding:6px 8px;display:flex;flex-direction:column;gap:4px;}
+.prop-row{display:flex;align-items:center;gap:6px;padding:2px 0;}
+.prop-key{font-size:12px;color:var(--t3);width:80px;flex-shrink:0;}
+.prop-val{font-size:12px;color:var(--t1);flex:1;}
+.prop-val.blue{color:var(--acc);}
+.prop-val.green{color:var(--green);}
+.prop-val.orange{color:var(--orange);}
+.prop-slider{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:var(--bg4);border-radius:2px;outline:none;cursor:pointer;}
+.prop-slider::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;border-radius:50%;background:var(--acc);cursor:pointer;}
+.effects-list{padding:4px 8px;}
+.effect-item{display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid var(--b1);}
+.effect-item:last-child{border-bottom:none;}
+.effect-enabled{width:10px;height:10px;border:1px solid var(--b2);border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:7px;}
+.effect-enabled.on{background:var(--acc);border-color:var(--acc);color:#fff;}
+.effect-name{font-size:12px;color:var(--t2);}
+.effect-val{margin-left:auto;font-size:12px;color:var(--t3);}
+.info-rows{padding:6px 8px;display:flex;flex-direction:column;gap:3px;}
+.info-row{display:flex;gap:6px;font-size:12px;}
+.info-k{color:var(--t4);width:80px;flex-shrink:0;}
+.info-v{color:var(--t2);}
+.ai-analysis{margin:8px;border:1px solid var(--acc);border-radius:2px;padding:8px;background:var(--acc3);}
+.ai-analysis-title{font-size:12px;color:var(--acc);font-weight:600;margin-bottom:5px;display:flex;align-items:center;gap:4px;}
+.ai-analysis-item{font-size:12px;color:var(--t2);padding:2px 0;border-bottom:1px solid rgba(45,135,255,.1);}
+.ai-analysis-item:last-child{border-bottom:none;}
+.timeline{background:var(--bg1);display:flex;flex-direction:column;border-top:1px solid var(--b1);}
+.timeline-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:4px 8px;display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.tl-title{font-size:12px;font-weight:600;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;}
+.tl-controls{display:flex;gap:4px;margin-left:auto;align-items:center;}
+.tl-btn{padding:2px 7px;border:1px solid var(--b2);border-radius:2px;font-family:var(--font);font-size:12px;color:var(--t3);background:var(--bg3);cursor:pointer;transition:all .12s;}
+.tl-btn:hover{color:var(--t1);background:var(--bg4);}
+.tl-timecode{font-size:12px;color:var(--acc);letter-spacing:.05em;padding:2px 7px;border:1px solid var(--b2);border-radius:2px;background:var(--bg0);}
+.timeline-body{display:flex;flex:1;overflow:hidden;}
+.tl-names{width:220px;flex-shrink:0;border-right:1px solid var(--b1);overflow:hidden;}
+.tl-name-header{height:24px;background:var(--bg2);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;font-size:12px;color:var(--t4);}
+.tl-track{height:26px;border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 6px;gap:5px;cursor:pointer;transition:background .12s;}
+.tl-track:hover{background:var(--bg3);}
+.tl-track.active{background:var(--acc3);}
+.tl-track-expand{font-size:7px;color:var(--t4);width:10px;}
+.tl-track-check{width:10px;height:10px;border:1px solid var(--b2);border-radius:1px;flex-shrink:0;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;}
+.tl-track-icon{width:8px;height:8px;border-radius:1px;flex-shrink:0;}
+.tl-track-name{font-size:12px;color:var(--t2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tl-track-name.active{color:var(--t1);}
+.tl-track-sub{font-size:12px;color:var(--t4);}
+.tl-scrub{flex:1;position:relative;overflow:hidden;}
+.tl-ruler{height:24px;background:var(--bg2);border-bottom:1px solid var(--b1);position:relative;cursor:pointer;}
+.tl-ruler-marks{position:absolute;inset:0;display:flex;align-items:flex-end;padding-bottom:4px;}
+.tl-mark{position:absolute;display:flex;flex-direction:column;align-items:center;}
+.tl-mark-line{width:1px;background:var(--b2);}
+.tl-mark-label{font-size:12px;color:var(--t4);margin-top:2px;transform:translateX(-50%);}
+.tl-clips-area{position:relative;flex:1;overflow:hidden;}
+.tl-clip{position:absolute;height:18px;top:4px;border-radius:2px;cursor:pointer;display:flex;align-items:center;padding:0 5px;overflow:hidden;font-size:12px;font-weight:600;color:rgba(255,255,255,.8);transition:filter .15s,transform .1s;white-space:nowrap;}
+.tl-clip:hover{filter:brightness(1.2);transform:scaleY(1.05);}
+.tl-clip.active{outline:1px solid rgba(255,255,255,.5);}
+.tl-kf{position:absolute;width:8px;height:8px;background:var(--orange);border:1px solid rgba(0,0,0,.3);border-radius:1px;top:9px;transform:rotate(45deg) translate(-50%,-50%);pointer-events:none;}
+.tl-playhead{position:absolute;top:0;width:1px;background:var(--red);pointer-events:none;z-index:20;}
+.tl-playhead::before{content:"";position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--red);}
+.tl-playhead-line{position:absolute;top:5px;left:0;width:1px;background:var(--red);bottom:0;}
+.tl-track-row{position:relative;height:26px;border-bottom:1px solid var(--b1);}
+.tl-track-bg{position:absolute;inset:0;cursor:pointer;}
+.tl-track-bg:hover{background:rgba(255,255,255,.02);}
+.ai-overlay{position:absolute;inset:0;pointer-events:none;z-index:50;}
+.ai-scan-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,135,255,.4),transparent);animation:scanLine 4s linear infinite;opacity:0;transition:opacity .5s;}
+.ai-scan-line.active{opacity:1;}
+@keyframes scanLine{0%{top:0%;}100%{top:100%;}}
+.cursor-glow{position:fixed;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(45,135,255,.06),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left .08s,top .08s;z-index:999;}
+.fade-in{animation:fadeIn .3s ease forwards;}
+@keyframes fadeIn{from{transform:translateY(4px);}to{transform:translateY(0);}}
 </style>
 </head>
 <body>
 <div id="root"></div>
 
 <script type="text/babel">
-const { useState, useEffect } = React;
+const { useState, useEffect, useRef, useCallback } = React;
+
+const AI_MESSAGES = [
+'Analyzing composition…',
+'Detected motion style: Kinetic',
+'AI Optimized — render pass complete',
+'Keyframe suggestion applied',
+'Composition depth: 94th percentile',
+'Detecting scene transitions…',
+'Neural timing analysis active',
+'Smart trim applied to selection'];
+
+function formatTime(pct) {
+  const total = 75;
+  const s = Math.round(pct * total / 100);
+  return `0:${String(s).padStart(2, '0')}`;
+}
 
 function App() {
-    const [data, setData] = useState(null);
-    const [activeComp, setActiveComp] = useState('projects');
-    const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [activeComp, setActiveComp] = useState('about');
+  const [playhead, setPlayhead] = useState(8);
+  const [aiMode, setAiMode] = useState(false);
+  const [aiMsg, setAiMsg] = useState(AI_MESSAGES[0]);
+  const [cursorPos, setCursorPos] = useState({ x: -200, y: -200 });
+  const [loading, setLoading] = useState(true);
+  const msgRef = useRef(0);
 
-    useEffect(() => {
-        fetch('./data.json')
-            .then(res => res.json())
-            .then(d => {
-                setData(d);
-                setLoading(false);
-            })
-            .catch(err => console.error("Error loading data.json", err));
-    }, []);
+  useEffect(() => {
+    fetch('./data.json')
+      .then(res => res.json())
+      .then(d => {
+        setData(d);
+        setLoading(false);
+      });
+  }, []);
 
-    if (loading) return <div style={{color:'white', padding: 20}}>Initializing Workspace...</div>;
+  useEffect(() => {
+    if (!aiMode) return;
+    const id = setInterval(() => {
+      msgRef.current = (msgRef.current + 1) % AI_MESSAGES.length;
+      setAiMsg(AI_MESSAGES[msgRef.current]);
+    }, 2800);
+    return () => clearInterval(id);
+  }, [aiMode]);
 
-    const { profile, compositions, workItems, projects, clients } = data;
+  useEffect(() => {
+    const handler = (e) => setCursorPos({ x: e.clientX, y: e.clientY });
+    window.addEventListener('mousemove', handler);
+    return () => window.removeEventListener('mousemove', handler);
+  }, []);
 
-    return (
-        <div className="app">
-            <div className="menubar">
-                <div className="menubar-brand">SV</div>
-                {['File', 'Edit', 'Composition', 'Layer', 'Help'].map(m => <div key={m} className="menubar-item">{m}</div>)}
+  useEffect(() => {
+    const id = setInterval(() => {
+      setPlayhead((p) => p >= 100 ? 0 : p + 0.15);
+    }, 100);
+    return () => clearInterval(id);
+  }, []);
+
+  if (loading) return <div style={{color:'white', padding: 20}}>Loading...</div>;
+
+  const { profile, compositions, workItems, projects, clients, timelineTracks } = data;
+
+  return (
+    <>
+      {aiMode && <div className="cursor-glow" style={{ left: cursorPos.x, top: cursorPos.y }} />}
+      <div className="app">
+        <div className="menubar">
+          <div className="menubar-brand">SV</div>
+          {['File', 'Edit', 'Composition', 'Layer', 'Effect', 'View', 'Window', 'Help'].map(m => <div key={m} className="menubar-item">{m}</div>)}
+          <div className="menubar-right">
+            <span className="time-display">{new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}</span>
+            <div className={`ai-badge ${aiMode ? 'active' : 'inactive'}`} onClick={() => setAiMode(!aiMode)}>
+              <div className={`ai-dot${aiMode ? ' pulse' : ''}`} />
+              AI Assist {aiMode ? 'ON' : 'OFF'}
             </div>
-            <div className="toolbar">
-                <span style={{padding:'0 10px'}}>Workspace: Professional Portfolio</span>
-            </div>
-            <div className="main-area">
-                <div className="panel">
-                    <div className="panel-header">Project</div>
-                    <div style={{padding:8}}>
-                        {compositions.map(c => (
-                            <div key={c.id} className={`comp-item ${activeComp === c.id ? 'active' : ''}`} onClick={() => setActiveComp(c.id)}>
-                                <span style={{width:8, height:8, background:c.color, borderRadius:1}} />
-                                {c.name}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="viewer">
-                    <div className="panel-header" style={{background: 'var(--bg3)'}}>{activeComp}.comp</div>
-                    <div className="viewer-content">
-                        {activeComp === 'about' && <About profile={profile} />}
-                        {activeComp === 'projects' && <Projects projects={projects} />}
-                        {activeComp === 'work' && <Work work={workItems} />}
-                        {activeComp === 'clients' && <Clients clients={clients} />}
-                        {activeComp === 'contact' && <Contact profile={profile} />}
-                    </div>
-                </div>
-                <div className="panel">
-                    <div className="panel-header">Properties</div>
-                    <div style={{padding:12, fontSize:11, color:'var(--t2)'}}>
-                        {activeComp === 'projects' && <div>Total Clips: {projects.length}</div>}
-                        <div>Resolution: 1920x1080</div>
-                        <div>Frame Rate: 24 fps</div>
-                    </div>
-                </div>
-            </div>
-            <div className="timeline">
-                <div className="panel-header">Timeline</div>
-                <div style={{padding:10, fontSize:11, color:'var(--t4)'}}>
-                    [Render Queue: Idle] | Dynamic Preview Active
-                </div>
-            </div>
+          </div>
         </div>
-    );
+
+        <div className="toolbar">
+          {['↖', '✒', 'T', '□', '◎', '⊕'].map((icon, i) => <div key={i} className="tool-btn">{icon}</div>)}
+          <div className="tool-sep" />
+          <span className="toolbar-label">Workspace: Motion</span>
+          <div className={`ai-status${aiMode ? ' visible' : ''}`}><span className="ai-status-text">{aiMsg}</span></div>
+        </div>
+
+        <div className="main-area">
+          <div className="panel project-panel">
+            <div className="panel-header">
+              <div className="panel-icon">◈</div><span className="panel-title">Project</span>
+            </div>
+            <div className="project-list">
+              <div className="proj-section">Compositions</div>
+              {compositions.map(c => (
+                <div key={c.id} className={`comp-item${activeComp === c.id ? ' active' : ''}`} onClick={() => setActiveComp(c.id)}>
+                  <div className="comp-icon" style={{ background: c.color }} />
+                  <span className="comp-name">{c.name}</span>
+                  <span className="comp-dur">{c.dur}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="viewer">
+            <div className="viewer-tab-bar">
+              {compositions.map(c => (
+                <div key={c.id} className={`viewer-tab${activeComp === c.id ? ' active' : ''}`} onClick={() => setActiveComp(c.id)}>
+                  <div className="viewer-tab-dot" style={{ background: c.color, opacity: activeComp === c.id ? 1 : .4 }} />
+                  {c.name}
+                </div>
+              ))}
+            </div>
+            <div className="viewer-content">
+              {aiMode && <div className="ai-overlay"><div className="ai-scan-line active" /></div>}
+              {activeComp === 'about' && <About profile={profile} />}
+              {activeComp === 'work' && <Work workItems={workItems} />}
+              {activeComp === 'projects' && <Projects projects={projects} />}
+              {activeComp === 'clients' && <Clients clients={clients} />}
+              {activeComp === 'contact' && <Contact profile={profile} />}
+            </div>
+            <div className="viewer-footer">
+              <div className="viewer-btn play">▶ Play</div>
+              <div className="resolution-badge">1920 × 1080 · 24fps</div>
+            </div>
+          </div>
+
+          <PropertiesPanel activeComp={activeComp} compositions={compositions} aiMode={aiMode} />
+        </div>
+
+        <Timeline timelineTracks={timelineTracks} playhead={playhead} setPlayhead={setPlayhead} aiMode={aiMode} />
+      </div>
+    </>
+  );
 }
 
 function About({ profile }) {
-    return (
-        <div className="fade-in">
-            <div style={{display:'flex', gap:20, marginBottom:20}}>
-                <img src={profile.photo} style={{width:100, height:130, objectFit:'cover', border:'1px solid var(--b2)'}} />
-                <div>
-                    <h1 style={{fontSize:24}}>{profile.name}</h1>
-                    <p style={{color:'var(--acc)', fontSize:12, marginBottom:10}}>{profile.title}</p>
-                    <p style={{fontSize:13, lineHeight:1.6, color:'var(--t2)'}}>{profile.bio}</p>
-                </div>
-            </div>
+  return (
+    <div className="comp-about fade-in">
+      <div className="profile-header">
+        <div className="profile-photo"><img src={profile.photo} alt="Profile" /></div>
+        <div className="profile-info">
+          <div className="profile-name">{profile.name}</div>
+          <div className="profile-title">{profile.title}</div>
+          <div className="profile-bio">{profile.bio}</div>
         </div>
-    );
+      </div>
+      <div>
+        <div className="section-label">Contact</div>
+        {Object.entries(profile.contact).map(([k, v]) => <div key={k} className="contact-item"><b>{k}:</b> {v}</div>)}
+      </div>
+    </div>
+  );
+}
+
+function Work({ workItems }) {
+  return (
+    <div className="comp-work fade-in">
+      {workItems.map((w, i) => (
+        <div key={i} className="work-item expanded">
+          <div className="work-header">
+            <div className="work-color" style={{ background: w.color }} />
+            <div className="work-name">{w.name} — {w.role}</div>
+            <div className="work-period">{w.period}</div>
+          </div>
+          <div className="work-body"><div className="work-desc">{w.desc}</div></div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function Projects({ projects }) {
-    return (
-        <div className="fade-in" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:15}}>
-            {projects.map((p, i) => (
-                <div key={i} className="project-card">
-                    <div className="project-thumb">
-                        {p.mediaType === 'video' ? (
-                            <video src={p.mediaUrl} muted loop onMouseOver={e => e.target.play()} onMouseOut={e => {e.target.pause(); e.target.currentTime=0;}} />
-                        ) : (
-                            <img src={p.mediaUrl} />
-                        )}
-                    </div>
-                    <div className="project-info">
-                        <div className="project-name">{p.name}</div>
-                        <div className="project-client">{p.client} — {p.sub}</div>
-                    </div>
-                </div>
-            ))}
+  return (
+    <div className="comp-projects fade-in">
+      {projects.map((p, i) => (
+        <div key={i} className="project-card">
+          <div className="project-thumb">
+            {p.mediaType === 'video' ? (
+              <video src={p.mediaUrl} muted loop onMouseOver={e => e.target.play()} onMouseOut={e => {e.target.pause(); e.target.currentTime=0;}} />
+            ) : (
+              <img src={p.mediaUrl} alt={p.name} />
+            )}
+          </div>
+          <div className="project-info">
+            <div className="project-card-name">{p.name}</div>
+            <div className="project-card-client">{p.client} — {p.sub}</div>
+          </div>
         </div>
-    );
-}
-
-function Work({ work }) {
-    return (
-        <div className="fade-in">
-            {work.map((w, i) => (
-                <div key={i} style={{marginBottom:15, borderBottom:'1px solid var(--b1)', paddingBottom:10}}>
-                    <div style={{display:'flex', justifyContent:'space-between'}}>
-                        <h3 style={{fontSize:14}}>{w.name}</h3>
-                        <span style={{fontSize:11, color:'var(--t4)'}}>{w.period}</span>
-                    </div>
-                    <div style={{color:'var(--acc)', fontSize:11}}>{w.role}</div>
-                    <p style={{fontSize:12, marginTop:5, color:'var(--t2)'}}>{w.desc}</p>
-                </div>
-            ))}
-        </div>
-    );
+      ))}
+    </div>
+  );
 }
 
 function Clients({ clients }) {
-    return (
-        <div className="fade-in" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10}}>
-            {clients.map((c, i) => (
-                <div key={i} style={{background:'var(--bg2)', padding:12, border:'1px solid var(--b1)'}}>
-                    <div style={{fontWeight:'700', color:c.color}}>{c.name}</div>
-                    <div style={{fontSize:10, color:'var(--t4)'}}>{c.location}</div>
-                </div>
-            ))}
-        </div>
-    );
+  return (
+    <div className="comp-clients fade-in">
+      <div className="clients-grid">
+        {clients.map((c, i) => (
+          <div key={i} className="client-card" style={{ borderTop: `2px solid ${c.color}` }}>
+            <div className="client-name" style={{ color: c.color }}>{c.name}</div>
+            <div className="client-location">{c.location}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function Contact({ profile }) {
-    return (
-        <div className="fade-in" style={{textAlign:'center', padding:40}}>
-            <h2 style={{marginBottom:20}}>{profile.name}</h2>
-            <div style={{fontSize:14, color:'var(--t2)'}}>{profile.contact.email}</div>
-            <div style={{fontSize:14, color:'var(--t2)', marginTop:5}}>{profile.contact.phone}</div>
-            <div style={{fontSize:12, color:'var(--t4)', marginTop:20}}>{profile.contact.location}</div>
-        </div>
-    );
+  return (
+    <div className="comp-contact fade-in">
+      <div className="contact-card">
+        <div className="contact-name-big">{profile.name}</div>
+        <div className="contact-row">{profile.contact.email}</div>
+        <div className="contact-row">{profile.contact.phone}</div>
+      </div>
+    </div>
+  );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+function PropertiesPanel({ activeComp, compositions, aiMode }) {
+  const comp = compositions.find(c => c.id === activeComp);
+  return (
+    <div className="panel properties-panel">
+      <div className="panel-header"><span className="panel-title">Properties</span></div>
+      <div className="prop-section">
+        <div className="prop-section-header"><span className="prop-section-title">Composition</span></div>
+        <div className="info-rows">
+          <div className="info-row"><span className="info-k">Name</span><span className="info-v">{comp?.name}</span></div>
+          <div className="info-row"><span className="info-k">Duration</span><span className="info-v">{comp?.dur}</span></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Timeline({ timelineTracks, playhead, setPlayhead, aiMode }) {
+  return (
+    <div className="timeline">
+      <div className="timeline-header"><span className="tl-title">Timeline</span></div>
+      <div className="timeline-body">
+        <div className="tl-names">
+          {timelineTracks.map(t => (
+            <div key={t.id} className="tl-track">
+              <div className="tl-track-icon" style={{ background: t.color }} />
+              <div className="tl-track-name">{t.name}</div>
+            </div>
+          ))}
+        </div>
+        <div className="tl-scrub" onClick={(e) => setPlayhead(e.nativeEvent.offsetX / e.target.offsetWidth * 100)}>
+          <div className="tl-ruler">
+            <div className="tl-playhead" style={{ left: `${playhead}%` }} />
+          </div>
+          {timelineTracks.map(t => (
+            <div key={t.id} className="tl-track-row">
+              {t.clips.map((c, i) => (
+                <div key={i} className="tl-clip" style={{ left: `${c.start}%`, width: `${c.end - c.start}%`, background: t.color }} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 </body>
 </html>
