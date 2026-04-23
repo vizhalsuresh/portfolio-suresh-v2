@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Suresh Vizhal — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<style>
+/* AE-Inspired CSS */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg0:#0a0a0a;--bg1:#111;--bg2:#181818;--bg3:#1f1f1f;--bg4:#272727;
+  --b1:#2a2a2a;--b2:#333;--b3:#3d3d3d;
+  --t1:#e2e2e2;--t2:#a0a0a0;--t3:#666;--t4:#444;
+  --acc:#2d87ff;--acc2:rgba(45,135,255,0.15);--acc3:rgba(45,135,255,0.06);
+  --acc-glow:rgba(45,135,255,0.25);
+  --green:#3ecf6e;--orange:#e8854a;--purple:#a855f7;--red:#f04545;--teal:#3ecfb8;
+  --font:'JetBrains Mono',monospace;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);font-family:var(--font);color:var(--t1);}
+#root{width:100%;height:100%;display:flex;flex-direction:column;}
+.app{display:grid;grid-template-rows:26px 30px 1fr 210px;grid-template-columns:1fr;height:100vh;}
+.menubar{background:var(--bg1);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;gap:2px;z-index:100;}
+.menubar-brand{font-size:12px;font-weight:700;color:var(--acc);letter-spacing:.08em;margin-right:10px;padding:2px 6px;border:1px solid var(--b2);border-radius:2px;}
+.menubar-item{padding:3px 8px;cursor:pointer;color:var(--t2);font-size:11px;border-radius:2px;transition:all .15s;}
+.menubar-item:hover{background:var(--bg4);color:var(--t1);}
+.toolbar{background:var(--bg2);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;gap:1px;font-size:11px;color:var(--t3);}
+.main-area{display:grid;grid-template-columns:240px 1fr 260px;overflow:hidden;border-bottom:1px solid var(--b1);}
+.panel{background:var(--bg1);display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--b1);}
+.panel-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:5px 8px;display:flex;align-items:center;gap:6px;flex-shrink:0;font-size:11px;font-weight:600;color:var(--t2);text-transform:uppercase;}
+.viewer{display:flex;flex-direction:column;position:relative;background:var(--bg0);}
+.viewer-content{flex:1;overflow:auto;padding:20px;}
+.timeline{background:var(--bg1);display:flex;flex-direction:column;border-top:1px solid var(--b1);}
+.comp-item{display:flex;align-items:center;gap:6px;padding:4px 8px;cursor:pointer;font-size:11px;color:var(--t2);}
+.comp-item.active{background:var(--acc3);color:var(--t1);border-left:2px solid var(--acc);}
+.project-card{border:1px solid var(--b1);border-radius:2px;overflow:hidden;background:var(--bg2);margin-bottom:10px;cursor:pointer;transition:all .2s;}
+.project-card:hover{border-color:var(--acc);}
+.project-thumb{height:120px;background:var(--bg3);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.project-thumb img, .project-thumb video {width:100%;height:100%;object-fit:cover;}
+.project-info{padding:8px;}
+.project-name{font-size:12px;font-weight:700;}
+.project-client{font-size:10px;color:var(--acc);}
+.fade-in{animation:fadeIn 0.3s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function App() {
+    const [data, setData] = useState(null);
+    const [activeComp, setActiveComp] = useState('projects');
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('./data.json')
+            .then(res => res.json())
+            .then(d => {
+                setData(d);
+                setLoading(false);
+            })
+            .catch(err => console.error("Error loading data.json", err));
+    }, []);
+
+    if (loading) return <div style={{color:'white', padding: 20}}>Initializing Workspace...</div>;
+
+    const { profile, compositions, workItems, projects, clients } = data;
+
+    return (
+        <div className="app">
+            <div className="menubar">
+                <div className="menubar-brand">SV</div>
+                {['File', 'Edit', 'Composition', 'Layer', 'Help'].map(m => <div key={m} className="menubar-item">{m}</div>)}
+            </div>
+            <div className="toolbar">
+                <span style={{padding:'0 10px'}}>Workspace: Professional Portfolio</span>
+            </div>
+            <div className="main-area">
+                <div className="panel">
+                    <div className="panel-header">Project</div>
+                    <div style={{padding:8}}>
+                        {compositions.map(c => (
+                            <div key={c.id} className={`comp-item ${activeComp === c.id ? 'active' : ''}`} onClick={() => setActiveComp(c.id)}>
+                                <span style={{width:8, height:8, background:c.color, borderRadius:1}} />
+                                {c.name}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="viewer">
+                    <div className="panel-header" style={{background: 'var(--bg3)'}}>{activeComp}.comp</div>
+                    <div className="viewer-content">
+                        {activeComp === 'about' && <About profile={profile} />}
+                        {activeComp === 'projects' && <Projects projects={projects} />}
+                        {activeComp === 'work' && <Work work={workItems} />}
+                        {activeComp === 'clients' && <Clients clients={clients} />}
+                        {activeComp === 'contact' && <Contact profile={profile} />}
+                    </div>
+                </div>
+                <div className="panel">
+                    <div className="panel-header">Properties</div>
+                    <div style={{padding:12, fontSize:11, color:'var(--t2)'}}>
+                        {activeComp === 'projects' && <div>Total Clips: {projects.length}</div>}
+                        <div>Resolution: 1920x1080</div>
+                        <div>Frame Rate: 24 fps</div>
+                    </div>
+                </div>
+            </div>
+            <div className="timeline">
+                <div className="panel-header">Timeline</div>
+                <div style={{padding:10, fontSize:11, color:'var(--t4)'}}>
+                    [Render Queue: Idle] | Dynamic Preview Active
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function About({ profile }) {
+    return (
+        <div className="fade-in">
+            <div style={{display:'flex', gap:20, marginBottom:20}}>
+                <img src={profile.photo} style={{width:100, height:130, objectFit:'cover', border:'1px solid var(--b2)'}} />
+                <div>
+                    <h1 style={{fontSize:24}}>{profile.name}</h1>
+                    <p style={{color:'var(--acc)', fontSize:12, marginBottom:10}}>{profile.title}</p>
+                    <p style={{fontSize:13, lineHeight:1.6, color:'var(--t2)'}}>{profile.bio}</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function Projects({ projects }) {
+    return (
+        <div className="fade-in" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:15}}>
+            {projects.map((p, i) => (
+                <div key={i} className="project-card">
+                    <div className="project-thumb">
+                        {p.mediaType === 'video' ? (
+                            <video src={p.mediaUrl} muted loop onMouseOver={e => e.target.play()} onMouseOut={e => {e.target.pause(); e.target.currentTime=0;}} />
+                        ) : (
+                            <img src={p.mediaUrl} />
+                        )}
+                    </div>
+                    <div className="project-info">
+                        <div className="project-name">{p.name}</div>
+                        <div className="project-client">{p.client} — {p.sub}</div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+function Work({ work }) {
+    return (
+        <div className="fade-in">
+            {work.map((w, i) => (
+                <div key={i} style={{marginBottom:15, borderBottom:'1px solid var(--b1)', paddingBottom:10}}>
+                    <div style={{display:'flex', justifyContent:'space-between'}}>
+                        <h3 style={{fontSize:14}}>{w.name}</h3>
+                        <span style={{fontSize:11, color:'var(--t4)'}}>{w.period}</span>
+                    </div>
+                    <div style={{color:'var(--acc)', fontSize:11}}>{w.role}</div>
+                    <p style={{fontSize:12, marginTop:5, color:'var(--t2)'}}>{w.desc}</p>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+function Clients({ clients }) {
+    return (
+        <div className="fade-in" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10}}>
+            {clients.map((c, i) => (
+                <div key={i} style={{background:'var(--bg2)', padding:12, border:'1px solid var(--b1)'}}>
+                    <div style={{fontWeight:'700', color:c.color}}>{c.name}</div>
+                    <div style={{fontSize:10, color:'var(--t4)'}}>{c.location}</div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+function Contact({ profile }) {
+    return (
+        <div className="fade-in" style={{textAlign:'center', padding:40}}>
+            <h2 style={{marginBottom:20}}>{profile.name}</h2>
+            <div style={{fontSize:14, color:'var(--t2)'}}>{profile.contact.email}</div>
+            <div style={{fontSize:14, color:'var(--t2)', marginTop:5}}>{profile.contact.phone}</div>
+            <div style={{fontSize:12, color:'var(--t4)', marginTop:20}}>{profile.contact.location}</div>
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+</body>
+</html>
