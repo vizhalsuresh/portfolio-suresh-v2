@@ -96,61 +96,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .viewer-btn.play{border-color:var(--acc);color:var(--acc);}
 .resolution-badge{margin-left:auto;padding:2px 6px;border:1px solid var(--b2);border-radius:2px;font-size:12px;color:var(--t3);}
 
-.comp-about{padding:20px;height:100%;overflow-y:auto;display:flex;flex-direction:column;gap:16px;}
-.profile-header{display:flex;gap:16px;align-items:flex-start;}
-.profile-photo{width:80px;height:95px;background:var(--bg3);border:1px solid var(--b2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t4);font-family:var(--font);text-align:center;line-height:1.4;border-radius:1px;overflow:hidden;position:relative;}
-.profile-info{flex:1;}
-.profile-name{font-size:20px;font-weight:700;color:var(--t1);letter-spacing:.02em;line-height:1;}
-.profile-title{font-size:12px;color:var(--acc);margin-top:4px;letter-spacing:.06em;font-weight:500;}
-.profile-bio{font-size:12px;color:var(--t2);margin-top:8px;line-height:1.6;font-family:'Space Grotesk',sans-serif;}
-.section-label{font-size:12px;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--b1);padding-bottom:4px;margin-bottom:8px;}
-.skill-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
-.skill-name{font-size:12px;color:var(--t2);width:100px;flex-shrink:0;}
-.skill-bar-bg{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;}
-.skill-bar-fill{height:100%;border-radius:2px;transition:width .8s cubic-bezier(.4,0,.2,1);}
-.skill-pct{font-size:12px;color:var(--t3);width:28px;text-align:right;}
-.tag-row{display:flex;gap:6px;flex-wrap:wrap;}
-.tag{padding:2px 7px;border:1px solid var(--b2);border-radius:2px;font-size:12px;color:var(--t2);}
-.tag.highlight{border-color:var(--acc);color:var(--acc);background:var(--acc3);}
-.contact-item{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:12px;color:var(--t2);}
-.contact-icon{width:12px;height:12px;color:var(--acc);flex-shrink:0;font-size:12px;}
-
-.comp-work{padding:16px;height:100%;overflow-y:auto;}
-.work-item{border:1px solid var(--b1);border-radius:2px;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:all .15s;}
-.work-header{padding:8px 10px;display:flex;align-items:center;gap:8px;background:var(--bg2);}
-.work-color{width:8px;height:8px;border-radius:1px;flex-shrink:0;}
-.work-name{font-size:12px;font-weight:600;color:var(--t1);flex:1;}
-.work-role{font-size:12px;color:var(--t3);}
-.work-period{font-size:12px;color:var(--t4);margin-left:auto;}
-.work-body{padding:8px 10px;background:var(--bg1);border-top:1px solid var(--b1);}
-.work-desc{font-size:12px;color:var(--t2);line-height:1.6;font-family:'Space Grotesk',sans-serif;}
-.work-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
-.work-tag{font-size:12px;padding:1px 5px;border-radius:2px;background:var(--bg3);border:1px solid var(--b2);color:var(--t3);}
-
-.comp-projects{padding:16px;height:100%;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start;}
-.project-card{border:1px solid var(--b1);border-radius:2px;overflow:hidden;cursor:pointer;transition:all .15s;}
-.project-card:hover{border-color:var(--acc);box-shadow:0 0 16px var(--acc3);}
-.project-thumb{height:90px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t4);text-align:center;position:relative;overflow:hidden;}
-.project-thumb img, .project-thumb video {width:100%;height:100%;object-fit:cover;}
-.project-info{padding:7px 8px;background:var(--bg2);}
-.project-card-name{font-size:12px;font-weight:600;color:var(--t1);}
-.project-card-sub{font-size:12px;color:var(--t3);margin-top:2px;}
-.project-card-client{font-size:12px;color:var(--acc);margin-top:3px;}
-
-.comp-clients{padding:16px;height:100%;overflow-y:auto;}
-.clients-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.client-card{border:1px solid var(--b1);border-radius:2px;padding:12px;background:var(--bg2);transition:all .15s;}
-.client-name{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:3px;}
-.client-location{font-size:12px;color:var(--t4);margin-bottom:8px;}
-.client-deliverables{font-size:12px;color:var(--t2);line-height:1.6;}
-.client-deliverables li::before{content:"▸ ";color:var(--acc);}
-
-.comp-contact{padding:24px;height:100%;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;}
-.contact-card{border:1px solid var(--b2);border-radius:2px;padding:20px 28px;background:var(--bg2);width:100%;max-width:340px;}
-.contact-name-big{font-size:24px;font-weight:700;color:var(--t1);margin-bottom:4px;}
-.contact-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--b1);font-size:12px;color:var(--t2);}
-.contact-lbl{font-size:12px;color:var(--t4);width:60px;flex-shrink:0;}
-
 .properties-panel{display:flex;flex-direction:column;overflow:hidden;}
 .prop-section{border-bottom:1px solid var(--b1);}
 .prop-section-header{padding:5px 8px;display:flex;align-items:center;gap:5px;cursor:pointer;background:var(--bg2);}
@@ -162,20 +107,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .prop-key{font-size:12px;color:var(--t3);width:80px;flex-shrink:0;}
 .prop-val{font-size:12px;color:var(--t1);flex:1;}
 .prop-val.blue{color:var(--acc);}
-.prop-slider{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:var(--bg4);border-radius:2px;outline:none;cursor:pointer;}
-.effects-list{padding:4px 8px;}
-.effect-item{display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid var(--b1);}
-.effect-enabled{width:10px;height:10px;border:1px solid var(--b2);border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:7px;}
-.effect-enabled.on{background:var(--acc);border-color:var(--acc);color:#fff;}
-.effect-name{font-size:12px;color:var(--t2);}
-.effect-val{margin-left:auto;font-size:12px;color:var(--t3);}
 .info-rows{padding:6px 8px;display:flex;flex-direction:column;gap:3px;}
 .info-row{display:flex;gap:6px;font-size:12px;}
 .info-k{color:var(--t4);width:80px;flex-shrink:0;}
 .info-v{color:var(--t2);}
-.ai-analysis{margin:8px;border:1px solid var(--acc);border-radius:2px;padding:8px;background:var(--acc3);}
-.ai-analysis-title{font-size:12px;color:var(--acc);font-weight:600;margin-bottom:5px;display:flex;align-items:center;gap:4px;}
-.ai-analysis-item{font-size:12px;color:var(--t2);padding:2px 0;border-bottom:1px solid rgba(45,135,255,.1);}
 
 .timeline{background:var(--bg1);display:flex;flex-direction:column;border-top:1px solid var(--b1);}
 .timeline-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:4px 8px;display:flex;align-items:center;gap:8px;flex-shrink:0;}
@@ -222,8 +157,21 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .fade-in{animation:fadeIn .3s ease forwards;}
 @keyframes fadeIn{from{transform:translateY(4px);}to{transform:translateY(0);}}
 
-.project-list::-webkit-scrollbar, .viewer-content::-webkit-scrollbar, .comp-work::-webkit-scrollbar, .comp-about::-webkit-scrollbar, .comp-projects::-webkit-scrollbar {width:4px;}
-.project-list::-webkit-scrollbar-thumb, .viewer-content::-webkit-scrollbar-thumb, .comp-work::-webkit-scrollbar-thumb, .comp-about::-webkit-scrollbar-thumb, .comp-projects::-webkit-scrollbar-thumb {background:var(--b2);border-radius:2px;}
+.project-list::-webkit-scrollbar, .comp-work::-webkit-scrollbar, .comp-about::-webkit-scrollbar {width:4px;}
+.project-list::-webkit-scrollbar-thumb, .comp-work::-webkit-scrollbar-thumb, .comp-about::-webkit-scrollbar-thumb {background:var(--b2);border-radius:2px;}
+
+/* BIG TEXT STYLES */
+.big-text-container{padding:60px 40px;height:100%;overflow-y:auto;display:flex;flex-direction:column;justify-content:center;}
+.hero-text{font-size:48px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--t1);font-family:'Space Grotesk',sans-serif;}
+.sub-hero-text{font-size:18px;color:var(--acc);margin-top:20px;max-width:600px;line-height:1.6;}
+.contact-hero{font-size:32px;margin-bottom:10px;color:var(--t1);}
+.contact-link{font-size:24px;color:var(--acc);text-decoration:none;display:block;margin-bottom:15px;transition:opacity 0.2s;}
+.contact-link:hover{opacity:0.8;}
+
+/* PLAYER STYLES */
+.source-monitor{width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;position:relative;}
+.source-monitor video, .source-monitor img {max-width:100%;max-height:100%;box-shadow:0 0 40px rgba(0,0,0,0.5);}
+.player-overlay{position:absolute;top:10px;left:10px;padding:4px 8px;background:rgba(0,0,0,0.6);font-size:10px;color:var(--teal);border:1px solid var(--b2);border-radius:2px;}
 </style>
 </head>
 <body>
@@ -232,15 +180,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 <script type="text/babel">
 const { useState, useEffect, useRef, useCallback } = React;
 
-const AI_MESSAGES = [
-'Analyzing composition…',
-'Detected motion style: Kinetic',
-'AI Optimized — render pass complete',
-'Keyframe suggestion applied',
-'Composition depth: 94th percentile',
-'Detecting scene transitions…',
-'Neural timing analysis active',
-'Smart trim applied to selection'];
+const AI_MESSAGES = ['Analyzing…','Detected: Kinetic','Optimized','Neural analysis active'];
 
 function formatTime(pct) {
   const total = 75;
@@ -248,150 +188,171 @@ function formatTime(pct) {
   return `0:${String(s).padStart(2, '0')}`;
 }
 
-// --- COMPONENTS ---
+function App() {
+  const [data, setData] = useState(null);
+  const [activeComp, setActiveComp] = useState('about');
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [playhead, setPlayhead] = useState(8);
+  const [aiMode, setAiMode] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-function SkillBar({ name, pct, color }) {
-  return (
-    <div className="skill-row">
-      <span className="skill-name">{name}</span>
-      <div className="skill-bar-bg">
-        <div className="skill-bar-fill" style={{ width: `${pct}%`, background: color || 'var(--acc)' }} />
-      </div>
-      <span className="skill-pct">{pct}%</span>
-    </div>);
-}
+  useEffect(() => {
+    fetch('./data.json').then(res => res.json()).then(d => { 
+        setData(d); 
+        if(d.projects.length > 0) setSelectedProject(d.projects[0]);
+        setLoading(false); 
+    });
+  }, []);
 
-function AboutComp({ profile }) {
-  return (
-    <div className="comp-about fade-in" style={{height:'100%', overflowY:'auto'}}>
-      <div className="profile-header">
-        <div className="profile-photo">
-          <img src={profile.photo} alt="Profile" style={{width:'100%', height:'100%', objectFit:'cover'}} />
-        </div>
-        <div className="profile-info">
-          <div className="profile-name">{profile.name}</div>
-          <div className="profile-title">{profile.title}</div>
-          <div className="profile-bio" style={{ marginTop: '6px' }}>{profile.bio}</div>
-        </div>
-      </div>
-      <div>
-        <div className="section-label">Software Proficiency</div>
-        <SkillBar name="After Effects" pct={95} color="#2d87ff" />
-        <SkillBar name="Photoshop" pct={80} color="#31a8ff" />
-        <SkillBar name="Premiere Pro" pct={70} color="#9999ff" />
-      </div>
-      <div>
-        <div className="section-label">Contact</div>
-        <div className="contact-item"><span className="contact-icon">◉</span>{profile.contact.location}</div>
-        <div className="contact-item"><span className="contact-icon">◈</span>{profile.contact.phone}</div>
-        <div className="contact-item"><span className="contact-icon">◈</span>{profile.contact.email}</div>
-      </div>
-    </div>);
-}
+  useEffect(() => {
+    const id = setInterval(() => setPlayhead(p => p >= 100 ? 0 : p + 0.15), 100);
+    return () => clearInterval(id);
+  }, []);
 
-function WorkComp({ workItems }) {
-  const [expanded, setExpanded] = useState(null);
+  if (loading) return <div style={{color:'white', background:'#0a0a0a', height:'100vh', display:'flex', alignItems:'center', justifyContent:'center'}}>Initializing SV Workspace...</div>;
+
+  const { profile, compositions, workItems, projects, timelineTracks } = data;
+
   return (
-    <div className="comp-work fade-in" style={{height:'100%', overflowY:'auto'}}>
-      <div className="section-label" style={{ marginBottom: '12px' }}>Work Experience</div>
-      {workItems.map((w, i) =>
-      <div key={i} className={`work-item${expanded === i ? ' expanded' : ''}`} onClick={() => setExpanded(expanded === i ? null : i)}>
-          <div className="work-header">
-            <div className="work-color" style={{ background: w.color }} />
-            <div>
-              <div className="work-name">{w.name}</div>
-              <div className="work-role">{w.role}</div>
-            </div>
-            <div className="work-period">{w.period}</div>
+    <div className="app">
+      <div className="menubar">
+        <div className="menubar-brand">SV</div>
+        {['File', 'Edit', 'Composition', 'Layer', 'Help'].map(m => <div key={m} className="menubar-item">{m}</div>)}
+        <div className="menubar-right">
+          <span className="time-display">{new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}</span>
+          <div className={`ai-badge ${aiMode ? 'active' : 'inactive'}`} onClick={() => setAiMode(!aiMode)}>
+            <div className={`ai-dot${aiMode ? ' pulse' : ''}`} /> AI {aiMode ? 'ON' : 'OFF'}
           </div>
-          {(expanded === i || true) &&
-        <div className="work-body fade-in">
-              <div className="work-desc">{w.desc}</div>
-              <div className="work-tags">{w.tags.map((t) => <span key={t} className="work-tag">{t}</span>)}</div>
-            </div>
-        }
         </div>
+      </div>
+
+      <div className="toolbar">
+        {['↖', '✒', 'T', '□'].map((icon, i) => <div key={i} className="tool-btn">{icon}</div>)}
+        <div className="tool-sep" />
+        <span className="toolbar-label">Workspace: Motion</span>
+      </div>
+
+      <div className="main-area">
+        <div className="panel project-panel">
+          <div className="panel-header"><div className="panel-icon">◈</div><span className="panel-title">Project</span></div>
+          <div className="project-list">
+            <div className="proj-section">Compositions</div>
+            {compositions.map(c => (
+              <div key={c.id} className={`comp-item${activeComp === c.id ? ' active' : ''}`} onClick={() => setActiveComp(c.id)}>
+                <div className="comp-icon" style={{ background: c.color }} />
+                <span className="comp-name">{c.name}</span>
+                <span className="comp-dur">{c.dur}</span>
+              </div>
+            ))}
+            <div className="proj-section">Source Clips (Assets)</div>
+            {projects.map(p => (
+              <div key={p.id} className={`comp-item${selectedProject?.id === p.id ? ' active' : ''}`} onClick={() => { setSelectedProject(p); setActiveComp('player'); }}>
+                <div className="comp-icon" style={{ background: p.mediaType === 'video' ? 'var(--acc)' : 'var(--teal)' }} />
+                <span className="comp-name">{p.name}</span>
+                <span className="comp-dur" style={{fontSize:8}}>{p.mediaType.toUpperCase()}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="viewer">
+          <div className="viewer-tab-bar">
+            {compositions.map(c => (
+              <div key={c.id} className={`viewer-tab${activeComp === c.id ? ' active' : ''}`} onClick={() => setActiveComp(c.id)}>
+                <div className="viewer-tab-dot" style={{ background: c.color, opacity: activeComp === c.id ? 1 : .4 }} />
+                {c.name}
+              </div>
+            ))}
+          </div>
+          <div className="viewer-content">
+            {aiMode && <div className="ai-overlay"><div className="ai-scan-line active" /></div>}
+            {activeComp === 'about' && <About profile={profile} />}
+            {activeComp === 'work' && <Work workItems={workItems} />}
+            {activeComp === 'player' && <Player project={selectedProject} />}
+            {activeComp === 'contact' && <Contact profile={profile} />}
+          </div>
+          <div className="viewer-footer">
+            <div className="viewer-btn play">▶ Play</div>
+            <div className="resolution-badge">1920 × 1080 · 24fps</div>
+          </div>
+        </div>
+
+        <PropertiesPanel activeComp={activeComp} compositions={compositions} selectedProject={selectedProject} aiMode={aiMode} />
+      </div>
+
+      <Timeline activeComp={activeComp} setActiveComp={setActiveComp} playhead={playhead} setPlayhead={setPlayhead} timelineTracks={timelineTracks} />
+    </div>
+  );
+}
+
+function About({ profile }) {
+  return (
+    <div className="big-text-container fade-in">
+      <h1 className="hero-text">{profile.name}</h1>
+      <p className="hero-text" style={{color:'var(--acc)', fontSize:'32px'}}>{profile.title}</p>
+      <div className="sub-hero-text">{profile.bio}</div>
+    </div>
+  );
+}
+
+function Contact({ profile }) {
+  return (
+    <div className="big-text-container fade-in">
+      <div className="contact-hero">Start a Project</div>
+      <a href={`mailto:${profile.contact.email}`} className="hero-text contact-link">{profile.contact.email}</a>
+      <div className="contact-hero" style={{fontSize:'24px', marginTop:'20px'}}>Based in {profile.contact.location}</div>
+      <div className="sub-hero-text">{profile.contact.phone}</div>
+    </div>
+  );
+}
+
+function Player({ project }) {
+  if(!project) return <div className="source-monitor"><span style={{color:'var(--t4)'}}>No Clip Selected</span></div>;
+  return (
+    <div className="source-monitor fade-in">
+      <div className="player-overlay">SOURCE: {project.name}</div>
+      {project.mediaType === 'video' ? (
+        <video src={project.mediaUrl} controls autoPlay muted loop />
+      ) : (
+        <img src={project.mediaUrl} />
       )}
-    </div>);
+    </div>
+  );
 }
 
-function ProjectsComp({ projects }) {
+function Work({ workItems }) {
   return (
-    <div className="comp-projects fade-in" style={{ padding: '16px', height:'100%', overflowY:'auto' }}>
-      {projects.map((p, i) =>
-      <div key={i} className="project-card">
-          <div className="project-thumb">
-            {p.mediaType === 'video' ? (
-              <video src={p.mediaUrl} muted loop onMouseOver={e => e.target.play()} onMouseOut={e => {e.target.pause(); e.target.currentTime=0;}} />
-            ) : (
-              <img src={p.mediaUrl} />
-            )}
-          </div>
-          <div className="project-info">
-            <div className="project-card-name">{p.name}</div>
-            <div className="project-card-sub">{p.sub}</div>
-            <div className="project-card-client">{p.client}</div>
-          </div>
+    <div className="comp-work fade-in" style={{padding:'20px'}}>
+      {workItems.map((w, i) => (
+        <div key={i} style={{marginBottom:'30px', borderLeft:'2px solid'+w.color, paddingLeft:'15px'}}>
+          <div style={{fontSize:'12px', color:'var(--t4)'}}>{w.period}</div>
+          <div style={{fontSize:'18px', fontWeight:700, margin:'5px 0'}}>{w.name}</div>
+          <div style={{color:'var(--acc)', marginBottom:'10px'}}>{w.role}</div>
+          <div style={{fontSize:'13px', color:'var(--t2)', lineHeight:1.6}}>{w.desc}</div>
         </div>
-      )}
-    </div>);
+      ))}
+    </div>
+  );
 }
 
-function ClientsComp({ clients }) {
-  return (
-    <div className="comp-clients fade-in" style={{height:'100%', overflowY:'auto'}}>
-      <div className="section-label" style={{ marginBottom: '12px' }}>Client Work</div>
-      <div className="clients-grid">
-        {clients.map((c, i) =>
-        <div key={i} className="client-card" style={{ borderTop: `2px solid ${c.color}` }}>
-            <div className="client-name" style={{ color: c.color }}>{c.name}</div>
-            <div className="client-location">📍 {c.location}</div>
-            <ul className="client-deliverables" style={{fontSize:'12px', color:'var(--t2)', marginTop:'8px', listStyle:'none'}}>
-              {c.deliverables.map((d, j) => <li key={j}>▸ {d}</li>)}
-            </ul>
-          </div>
-        )}
-      </div>
-    </div>);
-}
-
-function ContactComp({ profile }) {
-  return (
-    <div className="comp-contact fade-in">
-      <div className="contact-card">
-        <div className="contact-name-big">{profile.name}</div>
-        <div style={{ fontSize: '10px', color: 'var(--acc)', marginBottom: '14px', letterSpacing: '.06em' }}>{profile.title}</div>
-        <div className="contact-row"><span className="contact-lbl">Email</span><span style={{ color: 'var(--t1)', fontSize: '10px' }}>{profile.contact.email}</span></div>
-        <div className="contact-row"><span className="contact-lbl">Phone</span><span style={{ color: 'var(--t1)', fontSize: '10px' }}>{profile.contact.phone}</span></div>
-        <div className="contact-row"><span className="contact-lbl">LinkedIn</span><span style={{ color: 'var(--t1)', fontSize: '10px' }}>{profile.contact.linkedin}</span></div>
-      </div>
-    </div>);
-}
-
-function PropertiesPanel({ activeComp, compositions, aiMode }) {
-  const comp = compositions.find((c) => c.id === activeComp) || compositions[0];
+function PropertiesPanel({ activeComp, compositions, selectedProject, aiMode }) {
+  const comp = compositions.find(c => c.id === activeComp) || compositions[0];
   return (
     <div className="panel properties-panel">
       <div className="panel-header"><div className="panel-icon">P</div><span className="panel-title">Properties</span></div>
       <div className="prop-section">
-        <div className="prop-section-header"><span className="prop-section-title">Composition</span></div>
+        <div className="prop-section-header"><span className="prop-section-title">Selection</span></div>
         <div className="info-rows">
-          <div className="info-row"><span className="info-k">Name</span><span className="info-v">{comp.name}</span></div>
-          <div className="info-row"><span className="info-k">Duration</span><span className="info-v">{comp.dur}</span></div>
-          <div className="info-row"><span className="info-k">Resolution</span><span className="info-v">1920 × 1080</span></div>
-          <div className="info-row"><span className="info-k">Frame Rate</span><span className="info-v">24 fps</span></div>
+          <div className="info-row"><span className="info-k">Name</span><span className="info-v">{activeComp === 'player' ? selectedProject?.name : comp.name}</span></div>
+          <div className="info-row"><span className="info-k">Type</span><span className="info-v">{activeComp === 'player' ? selectedProject?.mediaType.toUpperCase() : 'COMP'}</span></div>
+          <div className="info-row"><span className="info-k">Format</span><span className="info-v">1920 × 1080</span></div>
         </div>
       </div>
-      {aiMode && (
-        <div className="ai-analysis fade-in">
-          <div className="ai-analysis-title">AI Analysis</div>
-          <div className="ai-analysis-item">Complexity: <span style={{ color: 'var(--acc)' }}>High</span></div>
-        </div>
-      )}
-    </div>);
+    </div>
+  );
 }
 
-function Timeline({ activeComp, setActiveComp, playhead, setPlayhead, aiMode, timelineTracks }) {
+function Timeline({ activeComp, setActiveComp, playhead, setPlayhead, timelineTracks }) {
   return (
     <div className="timeline">
       <div className="timeline-header">
@@ -401,9 +362,8 @@ function Timeline({ activeComp, setActiveComp, playhead, setPlayhead, aiMode, ti
       </div>
       <div className="timeline-body">
         <div className="tl-names">
-          <div className="tl-name-header">Layer Name</div>
-          {timelineTracks.map((t) => (
-            <div key={t.id} className={`tl-track${t.id === activeComp ? ' active' : ''}`} onClick={() => setActiveComp(t.id)}>
+          {timelineTracks.map(t => (
+            <div key={t.id} className="tl-track">
               <div className="tl-track-icon" style={{ background: t.color }} />
               <div className="tl-track-name">{t.name}</div>
             </div>
@@ -411,127 +371,16 @@ function Timeline({ activeComp, setActiveComp, playhead, setPlayhead, aiMode, ti
         </div>
         <div className="tl-scrub" onClick={(e) => setPlayhead(e.nativeEvent.offsetX / e.target.offsetWidth * 100)}>
           <div className="tl-ruler"><div className="tl-playhead" style={{ left: `${playhead}%` }} /></div>
-          {timelineTracks.map((t) => (
+          {timelineTracks.map(t => (
             <div key={t.id} className="tl-track-row">
-              {t.clips.map((c, ci) => (
-                <div key={ci} className="tl-clip" style={{ left: `${c.start}%`, width: `${c.end - c.start}%`, background: t.color, opacity: 0.75 }}>{t.name}</div>
+              {t.clips.map((c, i) => (
+                <div key={i} className="tl-clip" style={{ left: `${c.start}%`, width: `${c.end - c.start}%`, background: t.color, opacity: 0.75 }}>{t.name}</div>
               ))}
             </div>
           ))}
         </div>
       </div>
-    </div>);
-}
-
-function App() {
-  const [data, setData] = useState(null);
-  const [activeComp, setActiveComp] = useState('projects');
-  const [playhead, setPlayhead] = useState(8);
-  const [aiMode, setAiMode] = useState(false);
-  const [aiMsg, setAiMsg] = useState(AI_MESSAGES[0]);
-  const [cursorPos, setCursorPos] = useState({ x: -200, y: -200 });
-  const [loading, setLoading] = useState(true);
-  const msgRef = useRef(0);
-
-  useEffect(() => {
-    fetch('./data.json').then(res => res.json()).then(d => { setData(d); setLoading(false); });
-  }, []);
-
-  useEffect(() => {
-    if (!aiMode) return;
-    const id = setInterval(() => {
-      msgRef.current = (msgRef.current + 1) % AI_MESSAGES.length;
-      setAiMsg(AI_MESSAGES[msgRef.current]);
-    }, 2800);
-    return () => clearInterval(id);
-  }, [aiMode]);
-
-  useEffect(() => {
-    const handler = (e) => setCursorPos({ x: e.clientX, y: e.clientY });
-    window.addEventListener('mousemove', handler);
-    return () => window.removeEventListener('mousemove', handler);
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setPlayhead((p) => p >= 100 ? 0 : p + 0.15);
-    }, 100);
-    return () => clearInterval(id);
-  }, []);
-
-  if (loading) return <div style={{color:'white', background:'#0a0a0a', height:'100vh', display:'flex', alignItems:'center', justifyContent:'center'}}>Initializing SV Workspace...</div>;
-
-  const { profile, compositions, workItems, projects, clients, timelineTracks } = data;
-
-  return (
-    <>
-      {aiMode && <div className="cursor-glow" style={{ left: cursorPos.x, top: cursorPos.y }} />}
-      <div className="app">
-        <div className="menubar">
-          <div className="menubar-brand">SV</div>
-          {['File', 'Edit', 'Composition', 'Layer', 'Effect', 'View', 'Window', 'Help'].map(m => <div key={m} className="menubar-item">{m}</div>)}
-          <div className="menubar-right">
-            <span className="time-display">{new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}</span>
-            <div className={`ai-badge ${aiMode ? 'active' : 'inactive'}`} onClick={() => setAiMode(!aiMode)}>
-              <div className={`ai-dot${aiMode ? ' pulse' : ''}`} />
-              AI Assist {aiMode ? 'ON' : 'OFF'}
-            </div>
-          </div>
-        </div>
-
-        <div className="toolbar">
-          {['↖', '✒', 'T', '□', '◎', '⊕'].map((icon, i) => <div key={i} className="tool-btn">{icon}</div>)}
-          <div className="tool-sep" />
-          <span className="toolbar-label">Workspace: Motion</span>
-          <div className={`ai-status${aiMode ? ' visible' : ''}`}><span className="ai-status-text">{aiMsg}</span></div>
-        </div>
-
-        <div className="main-area">
-          <div className="panel project-panel">
-            <div className="panel-header">
-              <div className="panel-icon">◈</div><span className="panel-title">Project</span>
-            </div>
-            <div className="project-list">
-              <div className="proj-section">Compositions</div>
-              {compositions.map(c => (
-                <div key={c.id} className={`comp-item${activeComp === c.id ? ' active' : ''}`} onClick={() => setActiveComp(c.id)}>
-                  <div className="comp-icon" style={{ background: c.color }} />
-                  <span className="comp-name">{c.name}</span>
-                  <span className="comp-dur">{c.dur}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="viewer">
-            <div className="viewer-tab-bar">
-              {compositions.map(c => (
-                <div key={c.id} className={`viewer-tab${activeComp === c.id ? ' active' : ''}`} onClick={() => setActiveComp(c.id)}>
-                  <div className="viewer-tab-dot" style={{ background: c.color, opacity: activeComp === c.id ? 1 : .4 }} />
-                  {c.name}
-                </div>
-              ))}
-            </div>
-            <div className="viewer-content">
-              {aiMode && <div className="ai-overlay"><div className="ai-scan-line active" /></div>}
-              {activeComp === 'about' && <AboutComp profile={profile} />}
-              {activeComp === 'work' && <WorkComp workItems={workItems} />}
-              {activeComp === 'projects' && <ProjectsComp projects={projects} />}
-              {activeComp === 'clients' && <ClientsComp clients={clients} />}
-              {activeComp === 'contact' && <ContactComp profile={profile} />}
-            </div>
-            <div className="viewer-footer">
-              <div className="viewer-btn play">▶ Play</div>
-              <div className="resolution-badge">1920 × 1080 · 24fps</div>
-            </div>
-          </div>
-
-          <PropertiesPanel activeComp={activeComp} compositions={compositions} aiMode={aiMode} />
-        </div>
-
-        <Timeline activeComp={activeComp} setActiveComp={setActiveComp} playhead={playhead} setPlayhead={setPlayhead} aiMode={aiMode} timelineTracks={timelineTracks} />
-      </div>
-    </>
+    </div>
   );
 }
 

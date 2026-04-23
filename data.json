@@ -15,8 +15,7 @@
   "compositions": [
     { "id": "about", "name": "About.comp", "dur": "0:30", "color": "#2d87ff", "group": "Portfolio" },
     { "id": "work", "name": "Work_Experience.comp", "dur": "0:45", "color": "#e8854a", "group": "Portfolio" },
-    { "id": "projects", "name": "Projects.comp", "dur": "1:00", "color": "#3ecf6e", "group": "Portfolio" },
-    { "id": "clients", "name": "Clients.comp", "dur": "0:40", "color": "#a855f7", "group": "Portfolio" },
+    { "id": "player", "name": "Source_Monitor.comp", "dur": "1:00", "color": "#3ecf6e", "group": "Portfolio" },
     { "id": "contact", "name": "Contact.comp", "dur": "0:20", "color": "#3ecfb8", "group": "Portfolio" }
   ],
   "workItems": [
@@ -24,27 +23,17 @@
     { "name": "Gozzimma TT / Maho Jase IT", "role": "Video Editor & Graphic Designer", "period": "Sep 2023–Jan 2025", "color": "#e8854a", "desc": "Edited promotional and training videos aligned with branding and marketing strategies.", "tags": ["Premiere Pro", "After Effects", "Graphic Design", "Social Media", "Branding"] }
   ],
   "projects": [
-    { "name": "OGS Mascot Opener", "client": "Global Studios", "sub": "AI Mascot Animation", "thumb": "ogs-mascot.mp4", "mediaType": "video", "mediaUrl": "assets/videos/ogs-mascot.mp4" },
-    { "name": "Karmic Liberation", "client": "Zen Media", "sub": "Animated Visual Series", "thumb": "karmic-liberation.mp4", "mediaType": "video", "mediaUrl": "assets/videos/karmic-liberation.mp4" },
-    { "name": "8 Conscious Breaths", "client": "Yogi Collective", "sub": "Meditation Guide Series", "thumb": "conscious-breaths.mp4", "mediaType": "video", "mediaUrl": "assets/videos/yogi-meditation/conscious-breaths.mp4" },
-    { "name": "8 Humming Breaths", "client": "Yogi Collective", "sub": "Sound Healing Visual", "thumb": "humming-breaths.mp4", "mediaType": "video", "mediaUrl": "assets/videos/yogi-meditation/humming-breaths.mp4" },
-    { "name": "Aham Chants", "client": "Yogi Collective", "sub": "Spiritual Audio-Visual", "thumb": "aham-chants.mp4", "mediaType": "video", "mediaUrl": "assets/videos/yogi-meditation/aham-chants.mp4" },
-    { "name": "Transcendental Intelligence", "client": "Zen Media", "sub": "Motion Graphic Experience", "thumb": "transcendental-intelligence.mp4", "mediaType": "video", "mediaUrl": "assets/videos/transcendental-intelligence.mp4" },
-    { "name": "Soul Sync Wellness", "client": "Wellness Hub", "sub": "Branding & Motion Package", "thumb": "soul-sync.jpg", "mediaType": "image", "mediaUrl": "assets/posters/soul-sync.jpg" },
-    { "name": "Turya Meditation", "client": "Yogi Collective", "sub": "Visual Identity", "thumb": "turya-meditation.jpg", "mediaType": "image", "mediaUrl": "assets/posters/turya-meditation.jpg" },
-    { "name": "Mind-Body Consciousness", "client": "Integrative Health", "sub": "Promotional Poster Design", "thumb": "wellness-program.jpg", "mediaType": "image", "mediaUrl": "assets/posters/wellness-program.jpg" }
-  ],
-  "clients": [
-    { "name": "Zen Media", "location": "International", "color": "#2d87ff", "deliverables": ["Animated visual storytelling", "Scene transitions", "Sound design synchronization"] },
-    { "name": "Wellness Hub", "location": "Chennai, India", "color": "#e8854a", "deliverables": ["Motion graphic packages", "Social media creatives", "Branding design"] },
-    { "name": "Yogi Collective", "location": "Global", "color": "#3ecf6e", "deliverables": ["Meditation guide videos", "Spiritual content creation", "Visual branding"] }
+    { "id": "p1", "name": "OGS Mascot Opener", "client": "Global Studios", "sub": "AI Mascot Animation", "thumb": "ogs-mascot.mp4", "mediaType": "video", "mediaUrl": "assets/videos/ogs-mascot.mp4" },
+    { "id": "p2", "name": "Karmic Liberation", "client": "Zen Media", "sub": "Animated Visual Series", "thumb": "karmic-liberation.mp4", "mediaType": "video", "mediaUrl": "assets/videos/karmic-liberation.mp4" },
+    { "id": "p3", "name": "8 Conscious Breaths", "client": "Yogi Collective", "sub": "Meditation Guide Series", "thumb": "conscious-breaths.mp4", "mediaType": "video", "mediaUrl": "assets/videos/yogi-meditation/conscious-breaths.mp4" },
+    { "id": "p4", "name": "8 Humming Breaths", "client": "Yogi Collective", "sub": "Sound Healing Visual", "thumb": "humming-breaths.mp4", "mediaType": "video", "mediaUrl": "assets/videos/yogi-meditation/humming-breaths.mp4" },
+    { "id": "p5", "name": "Aham Chants", "client": "Yogi Collective", "sub": "Spiritual Audio-Visual", "thumb": "aham-chants.mp4", "mediaType": "video", "mediaUrl": "assets/videos/yogi-meditation/aham-chants.mp4" },
+    { "id": "p6", "name": "Transcendental Intelligence", "client": "Zen Media", "sub": "Motion Graphic Experience", "thumb": "transcendental-intelligence.mp4", "mediaType": "video", "mediaUrl": "assets/videos/transcendental-intelligence.mp4" },
+    { "id": "p7", "name": "Soul Sync Wellness", "client": "Wellness Hub", "sub": "Branding & Motion Package", "thumb": "soul-sync.jpg", "mediaType": "image", "mediaUrl": "assets/posters/soul-sync.jpg" },
+    { "id": "p8", "name": "Turya Meditation", "client": "Yogi Collective", "sub": "Visual Identity", "thumb": "turya-meditation.jpg", "mediaType": "image", "mediaUrl": "assets/posters/turya-meditation.jpg" },
+    { "id": "p9", "name": "Mind-Body Consciousness", "client": "Integrative Health", "sub": "Promotional Poster Design", "thumb": "wellness-program.jpg", "mediaType": "image", "mediaUrl": "assets/posters/wellness-program.jpg" }
   ],
   "timelineTracks": [
     { "id": "projects", "name": "Projects Overview", "role": "Motion Graphics", "color": "#3ecf6e", "clips": [{ "start": 0, "end": 100 }], "kfs": [10, 30, 50, 70, 90] }
-  ],
-  "assets": [
-    { "name": "profile.jpg", "type": "image", "url": "assets/profile.jpg" },
-    { "name": "ogs-mascot.mp4", "type": "video", "url": "assets/videos/ogs-mascot.mp4" },
-    { "name": "karmic-liberation.mp4", "type": "video", "url": "assets/videos/karmic-liberation.mp4" }
   ]
 }
