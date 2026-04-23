@@ -16,6 +16,7 @@
     { "id": "about", "name": "About.comp", "dur": "0:30", "color": "#2d87ff", "group": "Portfolio" },
     { "id": "work", "name": "Work_Experience.comp", "dur": "0:45", "color": "#e8854a", "group": "Portfolio" },
     { "id": "player", "name": "Source_Monitor.comp", "dur": "1:00", "color": "#3ecf6e", "group": "Portfolio" },
+    { "id": "youtube", "name": "YouTube_Shorts.comp", "dur": "2:30", "color": "#ff0000", "group": "Portfolio" },
     { "id": "contact", "name": "Contact.comp", "dur": "0:20", "color": "#3ecfb8", "group": "Portfolio" }
   ],
   "workItems": [
@@ -32,6 +33,13 @@
     { "id": "p7", "name": "Soul Sync Wellness", "client": "Wellness Hub", "sub": "Branding & Motion Package", "thumb": "soul-sync.jpg", "mediaType": "image", "mediaUrl": "assets/posters/soul-sync.jpg" },
     { "id": "p8", "name": "Turya Meditation", "client": "Yogi Collective", "sub": "Visual Identity", "thumb": "turya-meditation.jpg", "mediaType": "image", "mediaUrl": "assets/posters/turya-meditation.jpg" },
     { "id": "p9", "name": "Mind-Body Consciousness", "client": "Integrative Health", "sub": "Promotional Poster Design", "thumb": "wellness-program.jpg", "mediaType": "image", "mediaUrl": "assets/posters/wellness-program.jpg" }
+  ],
+  "youtubeProjects": [
+    { "id": "yt1", "name": "Cinematic Visuals 01", "ytId": "hO-ic_L74Dc", "ratio": "16:9" },
+    { "id": "yt2", "name": "Motion Graphics Reel", "ytId": "3Pg-w19rbSM", "ratio": "9:16" },
+    { "id": "yt3", "name": "Post Production Flow", "ytId": "LFdEB0f7DUs", "ratio": "16:9" },
+    { "id": "yt4", "name": "Visual Effects Breakdown", "ytId": "izjxTA_-mNs", "ratio": "9:16" },
+    { "id": "yt5", "name": "Digital Artistry", "ytId": "7WrnD1lmpF0", "ratio": "16:9" }
   ],
   "timelineTracks": [
     { "id": "projects", "name": "Projects Overview", "role": "Motion Graphics", "color": "#3ecf6e", "clips": [{ "start": 0, "end": 100 }], "kfs": [10, 30, 50, 70, 90] }

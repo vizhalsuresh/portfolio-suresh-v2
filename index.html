@@ -69,7 +69,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .viewer-tab.active{background:var(--bg1);color:var(--t1);font-weight:600;}
 .viewer-tab-dot{width:6px;height:6px;border-radius:50%;}
 .viewer-content{flex:1;overflow:hidden;position:relative;background:#000;}
-.viewer-footer{background:var(--bg2);border-top:1px solid var(--b1);padding:6px 12px;display:flex;align-items:center;gap:15px;flex-shrink:0;font-size:11px;color:var(--t3);font-family:var(--font-mono);}
+.viewer-footer{background:var(--bg2);border-top:1px solid var(--b1);padding:4px 10px;display:flex;align-items:center;gap:15px;flex-shrink:0;font-size:11px;color:var(--t3);font-family:var(--font-mono);}
 
 /* SOURCE MONITOR / PLAYER */
 .source-monitor{width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
@@ -101,6 +101,23 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .contact-value-big{font-family:var(--font-hero);font-size:48px;color:var(--t1);text-decoration:none;transition:color .3s;letter-spacing:1px;}
 .contact-value-big:hover{color:var(--acc);}
 
+/* YOUTUBE GRID STYLES */
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:20px;padding:30px;height:100%;overflow-y:auto;}
+.yt-card{background:var(--bg2);border:1px solid var(--b1);border-radius:6px;overflow:hidden;position:relative;transition:all 0.3s cubic-bezier(0.23, 1, 0.32, 1);cursor:pointer;}
+.yt-card:hover{transform:scale(1.02);border-color:var(--acc);box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+.yt-thumb-wrap{position:relative;background:#000;width:100%;overflow:hidden;}
+.yt-card.ratio-16-9 .yt-thumb-wrap {aspect-ratio: 16/9;}
+.yt-card.ratio-9-16 .yt-thumb-wrap {aspect-ratio: 9/16; max-width: 320px; margin: 0 auto;}
+.yt-thumb{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+.yt-card:hover .yt-thumb{transform:scale(1.1);}
+.yt-play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);opacity:0;transition:opacity 0.3s;}
+.yt-card:hover .yt-play-btn{opacity:1;}
+.yt-play-icon{width:50px;height:50px;background:var(--acc);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;box-shadow:0 0 20px var(--acc-glow);}
+.yt-info{padding:12px;border-top:1px solid var(--b1);}
+.yt-name{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:4px;}
+.yt-meta{font-size:10px;color:var(--t3);font-family:var(--font-mono);}
+.yt-iframe{width:100%;height:100%;border:none;}
+
 /* TIMELINE */
 .timeline{background:var(--bg1);display:flex;flex-direction:column;border-top:1px solid var(--b1);}
 .timeline-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:6px 12px;display:flex;align-items:center;gap:10px;flex-shrink:0;}
@@ -119,7 +136,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .tl-ruler{height:24px;background:var(--bg2);border-bottom:1px solid var(--b1);position:relative;cursor:crosshair;}
 .tl-playhead{position:absolute;top:0;width:1px;background:var(--red);pointer-events:none;z-index:20;}
 .tl-track-row{position:relative;height:28px;border-bottom:1px solid var(--b1);}
-.tl-clip{position:absolute;height:20px;top:4px;border-radius:3px;cursor:pointer;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.9);overflow:hidden;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.3);}
+.tl-clip{position:absolute;height:20px;top:4px;border-radius:3px;cursor:pointer;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.9);overflow:hidden;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition: filter 0.2s;}
+.tl-clip:hover{filter: brightness(1.2);}
+.tl-clip.active{outline: 2px solid #fff; z-index: 10;}
 
 /* PROPERTIES PANEL */
 .properties-panel{display:flex;flex-direction:column;overflow:hidden;}
@@ -166,7 +185,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('./data.json').then(res => res.json()).then(d => { 
+    fetch('./data.json?v=' + new Date().getTime()).then(res => res.json()).then(d => { 
         setData(d); 
         if(d.projects.length > 0) setSelectedProject(d.projects.find(p => p.mediaType === 'video') || d.projects[0]);
         setLoading(false); 
@@ -180,14 +199,14 @@ function App() {
 
   if (loading) return <div style={{color:'var(--acc)', background:'#000', height:'100vh', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'monospace', letterSpacing:'4px'}}>INITIALIZING WORKSPACE...</div>;
 
-  const { profile, compositions, workItems, projects } = data;
+  const { profile, compositions, workItems, projects, youtubeProjects } = data;
   const videoProjects = projects.filter(p => p.mediaType === 'video');
   const posters = projects.filter(p => p.mediaType === 'image');
 
   const timelineTracks = [
-    { id: 'v1', name: 'Master Video', color: 'var(--acc)', clips: videoProjects.slice(0,4).map((p, i) => ({ start: i*15, end: (i*15)+12, name: p.name })) },
-    { id: 'v2', name: 'B-Roll / Overlays', color: 'var(--purple)', clips: videoProjects.slice(4).map((p, i) => ({ start: i*12 + 5, end: (i*12)+15, name: p.name })) },
-    { id: 'g1', name: 'Graphics & Posters', color: 'var(--teal)', clips: posters.map((p, i) => ({ start: i*10, end: (i*10)+25, name: p.name })) }
+    { id: 'v1', name: 'Master Video', color: 'var(--acc)', clips: videoProjects.slice(0,4).map((p, i) => ({ id: p.id, start: i*15, end: (i*15)+12, name: p.name, data: p })) },
+    { id: 'v2', name: 'B-Roll / Overlays', color: 'var(--purple)', clips: videoProjects.slice(4).map((p, i) => ({ id: p.id, start: i*12 + 5, end: (i*12)+15, name: p.name, data: p })) },
+    { id: 'g1', name: 'Graphics & Posters', color: 'var(--teal)', clips: posters.map((p, i) => ({ id: p.id, start: i*10, end: (i*10)+25, name: p.name, data: p })) }
   ];
 
   return (
@@ -255,6 +274,7 @@ function App() {
             {activeComp === 'about' && <About profile={profile} />}
             {activeComp === 'work' && <Work workItems={workItems} />}
             {activeComp === 'player' && <Player project={selectedProject} />}
+            {activeComp === 'youtube' && <YouTubeGrid items={youtubeProjects} />}
             {activeComp === 'contact' && <Contact profile={profile} />}
           </div>
           <div className="viewer-footer">
@@ -266,7 +286,7 @@ function App() {
         <PropertiesPanel activeComp={activeComp} compositions={compositions} selectedProject={selectedProject} />
       </div>
 
-      <Timeline activeComp={activeComp} setActiveComp={setActiveComp} playhead={playhead} setPlayhead={setPlayhead} timelineTracks={timelineTracks} />
+      <Timeline activeComp={activeComp} setSelectedProject={setSelectedProject} setActiveComp={setActiveComp} playhead={playhead} setPlayhead={setPlayhead} timelineTracks={timelineTracks} selectedProject={selectedProject} />
     </div>
   );
 }
@@ -313,6 +333,38 @@ function Contact({ profile }) {
       </div>
     </div>
   );
+}
+
+function YouTubeGrid({ items }) {
+    return (
+        <div className="yt-grid fade-in">
+            {items.map(item => <YouTubeCard key={item.id} item={item} />)}
+        </div>
+    );
+}
+
+function YouTubeCard({ item }) {
+    const [isPlaying, setIsPlaying] = useState(false);
+    return (
+        <div className={`yt-card ratio-${item.ratio.replace(':','-')}`} onClick={() => setIsPlaying(true)}>
+            <div className="yt-thumb-wrap">
+                {!isPlaying ? (
+                    <>
+                        <img src={`https://img.youtube.com/vi/${item.ytId}/maxresdefault.jpg`} className="yt-thumb" alt={item.name} />
+                        <div className="yt-play-btn">
+                            <div className="yt-play-icon">▶</div>
+                        </div>
+                    </>
+                ) : (
+                    <iframe className="yt-iframe" src={`https://www.youtube.com/embed/${item.ytId}?autoplay=1&mute=0`} allow="autoplay; encrypted-media" allowFullScreen />
+                )}
+            </div>
+            <div className="yt-info">
+                <div className="yt-name">{item.name}</div>
+                <div className="yt-meta">YOUTUBE // {item.ratio}</div>
+            </div>
+        </div>
+    );
 }
 
 function Player({ project }) {
@@ -371,7 +423,7 @@ function PropertiesPanel({ activeComp, compositions, selectedProject }) {
   );
 }
 
-function Timeline({ activeComp, setActiveComp, playhead, setPlayhead, timelineTracks }) {
+function Timeline({ activeComp, setSelectedProject, setActiveComp, playhead, setPlayhead, timelineTracks, selectedProject }) {
   return (
     <div className="timeline">
       <div className="timeline-header">
@@ -394,7 +446,10 @@ function Timeline({ activeComp, setActiveComp, playhead, setPlayhead, timelineTr
           {timelineTracks.map(t => (
             <div key={t.id} className="tl-track-row">
               {t.clips.map((c, i) => (
-                <div key={i} className="tl-clip" style={{ left: `${c.start}%`, width: `${c.end - c.start}%`, background: t.color, opacity: 0.7 }}>
+                <div key={i} 
+                    className={`tl-clip ${selectedProject?.id === c.id ? 'active' : ''}`}
+                    style={{ left: `${c.start}%`, width: `${c.end - c.start}%`, background: t.color, opacity: 0.7 }}
+                    onClick={() => { setSelectedProject(c.data); setActiveComp('player'); }}>
                   <span style={{padding:'0 5px'}}>{c.name}</span>
                 </div>
               ))}
