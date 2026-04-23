@@ -10,7 +10,7 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 <style>
-/* PRECISE CSS FROM ORIGINAL FILE */
+/* PRECISE ORIGINAL CSS */
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --bg0:#0a0a0a;--bg1:#111;--bg2:#181818;--bg3:#1f1f1f;--bg4:#272727;
@@ -25,6 +25,8 @@
 html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 #root{width:100%;height:100%;display:flex;flex-direction:column;}
 .app{display:grid;grid-template-rows:26px 30px 1fr 210px;grid-template-columns:1fr;height:100vh;font-family:var(--font);font-size:14px;color:var(--t1);background:var(--bg0);user-select:none;}
+
+/* MENU BAR */
 .menubar{background:var(--bg1);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;gap:2px;z-index:100;}
 .menubar-brand{font-size:12px;font-weight:700;color:var(--acc);letter-spacing:.08em;margin-right:10px;padding:2px 6px;border:1px solid var(--b2);border-radius:2px;}
 .menubar-item{padding:3px 8px;cursor:pointer;color:var(--t2);font-size:12px;border-radius:2px;transition:all .15s;}
@@ -37,6 +39,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .ai-dot.pulse{animation:pulse 1.5s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
 .time-display{font-size:12px;color:var(--t3);letter-spacing:.05em;}
+
+/* TOOLBAR */
 .toolbar{background:var(--bg2);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 8px;gap:1px;}
 .tool-btn{width:26px;height:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:2px;color:var(--t3);font-size:12px;transition:all .15s;border:1px solid transparent;}
 .tool-btn:hover{background:var(--bg4);color:var(--t1);}
@@ -49,7 +53,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .ai-status.visible{opacity:1;}
 .ai-status-text{animation:fadeText 3s ease-in-out infinite;}
 @keyframes fadeText{0%,100%{opacity:.5;}50%{opacity:1;}}
+
+/* MAIN AREA */
 .main-area{display:grid;grid-template-columns:240px 1fr 260px;overflow:hidden;border-bottom:1px solid var(--b1);}
+
+/* PANEL COMMON */
 .panel{background:var(--bg1);display:flex;flex-direction:column;overflow:hidden;}
 .panel-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:5px 8px;display:flex;align-items:center;gap:6px;flex-shrink:0;}
 .panel-title{font-size:12px;font-weight:600;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;}
@@ -57,6 +65,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .panel-controls{margin-left:auto;display:flex;gap:4px;}
 .panel-btn{width:16px;height:16px;border-radius:2px;border:1px solid var(--b2);background:var(--bg3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);}
 .panel-btn:hover{background:var(--bg4);color:var(--t1);}
+
+/* PROJECT PANEL */
 .project-panel{border-right:1px solid var(--b1);}
 .project-list{overflow-y:auto;flex:1;}
 .project-list::-webkit-scrollbar{width:4px;}
@@ -78,6 +88,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .search-input{width:100%;background:var(--bg3);border:1px solid var(--b2);border-radius:2px;padding:3px 6px;font-family:var(--font);font-size:12px;color:var(--t1);outline:none;}
 .search-input:focus{border-color:var(--acc);}
 .search-input::placeholder{color:var(--t4);}
+
+/* VIEWER */
 .viewer{border-right:1px solid var(--b1);display:flex;flex-direction:column;position:relative;}
 .viewer-tab-bar{background:var(--bg2);border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:0;flex-shrink:0;overflow:hidden;}
 .viewer-tab{padding:5px 12px;font-size:12px;color:var(--t3);cursor:pointer;border-right:1px solid var(--b1);white-space:nowrap;transition:all .12s;display:flex;align-items:center;gap:5px;}
@@ -89,12 +101,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .viewer-btn:hover{background:var(--bg4);color:var(--t1);}
 .viewer-btn.play{border-color:var(--acc);color:var(--acc);}
 .resolution-badge{margin-left:auto;padding:2px 6px;border:1px solid var(--b2);border-radius:2px;font-size:12px;color:var(--t3);}
+
+/* ABOUT COMPOSITION */
 .comp-about{padding:20px;height:100%;overflow-y:auto;display:flex;flex-direction:column;gap:16px;}
 .comp-about::-webkit-scrollbar{width:4px;}
 .comp-about::-webkit-scrollbar-thumb{background:var(--b2);}
 .profile-header{display:flex;gap:16px;align-items:flex-start;}
 .profile-photo{width:80px;height:95px;background:var(--bg3);border:1px solid var(--b2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t4);font-family:var(--font);text-align:center;line-height:1.4;border-radius:1px;overflow:hidden;position:relative;}
-.profile-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.profile-photo-placeholder{font-size:12px;color:var(--t4);text-align:center;}
 .profile-info{flex:1;}
 .profile-name{font-size:20px;font-weight:700;color:var(--t1);letter-spacing:.02em;line-height:1;}
 .profile-title{font-size:12px;color:var(--acc);margin-top:4px;letter-spacing:.06em;font-weight:500;}
@@ -110,6 +124,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .tag.highlight{border-color:var(--acc);color:var(--acc);background:var(--acc3);}
 .contact-item{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:12px;color:var(--t2);}
 .contact-icon{width:12px;height:12px;color:var(--acc);flex-shrink:0;font-size:12px;}
+
+/* WORK COMPOSITION */
 .comp-work{padding:16px;height:100%;overflow-y:auto;}
 .comp-work::-webkit-scrollbar{width:4px;}
 .comp-work::-webkit-scrollbar-thumb{background:var(--b2);}
@@ -125,6 +141,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .work-desc{font-size:12px;color:var(--t2);line-height:1.6;font-family:'Space Grotesk',sans-serif;}
 .work-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
 .work-tag{font-size:12px;padding:1px 5px;border-radius:2px;background:var(--bg3);border:1px solid var(--b2);color:var(--t3);}
+
+/* PROJECTS COMPOSITION */
 .comp-projects{padding:16px;height:100%;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start;}
 .comp-projects::-webkit-scrollbar{width:4px;}
 .comp-projects::-webkit-scrollbar-thumb{background:var(--b2);}
@@ -137,6 +155,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .project-card-name{font-size:12px;font-weight:600;color:var(--t1);}
 .project-card-sub{font-size:12px;color:var(--t3);margin-top:2px;}
 .project-card-client{font-size:12px;color:var(--acc);margin-top:3px;}
+
+/* CLIENTS COMPOSITION */
 .comp-clients{padding:16px;height:100%;overflow-y:auto;}
 .clients-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .client-card{border:1px solid var(--b1);border-radius:2px;padding:12px;background:var(--bg2);transition:all .15s;}
@@ -146,12 +166,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .client-deliverables{font-size:12px;color:var(--t2);line-height:1.6;}
 .client-deliverables li{list-style:none;padding-left:0;}
 .client-deliverables li::before{content:"▸ ";color:var(--acc);}
+
+/* CONTACT COMPOSITION */
 .comp-contact{padding:24px;height:100%;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;}
 .contact-card{border:1px solid var(--b2);border-radius:2px;padding:20px 28px;background:var(--bg2);width:100%;max-width:340px;}
 .contact-name-big{font-size:24px;font-weight:700;color:var(--t1);margin-bottom:4px;}
 .contact-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--b1);font-size:12px;color:var(--t2);}
 .contact-row:last-child{border-bottom:none;}
 .contact-lbl{font-size:12px;color:var(--t4);width:60px;flex-shrink:0;}
+
+/* PROPERTIES PANEL */
 .properties-panel{display:flex;flex-direction:column;overflow:hidden;}
 .prop-section{border-bottom:1px solid var(--b1);}
 .prop-section-header{padding:5px 8px;display:flex;align-items:center;gap:5px;cursor:pointer;background:var(--bg2);}
@@ -182,6 +206,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .ai-analysis-title{font-size:12px;color:var(--acc);font-weight:600;margin-bottom:5px;display:flex;align-items:center;gap:4px;}
 .ai-analysis-item{font-size:12px;color:var(--t2);padding:2px 0;border-bottom:1px solid rgba(45,135,255,.1);}
 .ai-analysis-item:last-child{border-bottom:none;}
+
+/* TIMELINE */
 .timeline{background:var(--bg1);display:flex;flex-direction:column;border-top:1px solid var(--b1);}
 .timeline-header{background:var(--bg2);border-bottom:1px solid var(--b1);padding:4px 8px;display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .tl-title{font-size:12px;font-weight:600;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;}
@@ -211,6 +237,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .tl-clip{position:absolute;height:18px;top:4px;border-radius:2px;cursor:pointer;display:flex;align-items:center;padding:0 5px;overflow:hidden;font-size:12px;font-weight:600;color:rgba(255,255,255,.8);transition:filter .15s,transform .1s;white-space:nowrap;}
 .tl-clip:hover{filter:brightness(1.2);transform:scaleY(1.05);}
 .tl-clip.active{outline:1px solid rgba(255,255,255,.5);}
+.tl-ghost-kf{position:absolute;width:6px;height:6px;background:rgba(45,135,255,.35);border:1px solid rgba(45,135,255,.5);border-radius:1px;top:10px;transform:rotate(45deg) translate(-50%,-50%);pointer-events:none;animation:ghostPulse 2.5s ease-in-out infinite;}
+@keyframes ghostPulse{0%,100%{opacity:.3;}50%{opacity:.8;}}
 .tl-kf{position:absolute;width:8px;height:8px;background:var(--orange);border:1px solid rgba(0,0,0,.3);border-radius:1px;top:9px;transform:rotate(45deg) translate(-50%,-50%);pointer-events:none;}
 .tl-playhead{position:absolute;top:0;width:1px;background:var(--red);pointer-events:none;z-index:20;}
 .tl-playhead::before{content:"";position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--red);}
@@ -218,13 +246,22 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg0);}
 .tl-track-row{position:relative;height:26px;border-bottom:1px solid var(--b1);}
 .tl-track-bg{position:absolute;inset:0;cursor:pointer;}
 .tl-track-bg:hover{background:rgba(255,255,255,.02);}
+
+/* AI overlay */
 .ai-overlay{position:absolute;inset:0;pointer-events:none;z-index:50;}
 .ai-scan-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,135,255,.4),transparent);animation:scanLine 4s linear infinite;opacity:0;transition:opacity .5s;}
 .ai-scan-line.active{opacity:1;}
 @keyframes scanLine{0%{top:0%;}100%{top:100%;}}
 .cursor-glow{position:fixed;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(45,135,255,.06),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left .08s,top .08s;z-index:999;}
+
+/* Transitions */
 .fade-in{animation:fadeIn .3s ease forwards;}
 @keyframes fadeIn{from{transform:translateY(4px);}to{transform:translateY(0);}}
+
+/* Scrollbars */
+.comp-about::-webkit-scrollbar{width:4px;}
+.comp-work::-webkit-scrollbar{width:4px;}
+.comp-projects::-webkit-scrollbar{width:4px;}
 </style>
 </head>
 <body>
@@ -243,15 +280,201 @@ const AI_MESSAGES = [
 'Neural timing analysis active',
 'Smart trim applied to selection'];
 
+const GHOST_KFS = [15, 28, 42, 57, 64];
+
 function formatTime(pct) {
   const total = 75;
   const s = Math.round(pct * total / 100);
   return `0:${String(s).padStart(2, '0')}`;
 }
 
+// ─── COMPONENTS ──────────────────────────────────────────────────────────────
+
+function SkillBar({ name, pct, color }) {
+  return (
+    <div className="skill-row">
+      <span className="skill-name">{name}</span>
+      <div className="skill-bar-bg">
+        <div className="skill-bar-fill" style={{ width: `${pct}%`, background: color || 'var(--acc)' }} />
+      </div>
+      <span className="skill-pct">{pct}%</span>
+    </div>);
+}
+
+function AboutComp({ profile }) {
+  return (
+    <div className="comp-about fade-in">
+      <div className="profile-header">
+        <div className="profile-photo">
+          <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(45deg,var(--bg3) 0px,var(--bg3) 2px,var(--bg4) 2px,var(--bg4) 8px)', opacity: .6 }} />
+          <img src={profile.photo} alt="Profile" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}}/>
+        </div>
+        <div className="profile-info">
+          <div className="profile-name">{profile.name}</div>
+          <div className="profile-title">{profile.title}</div>
+          <div className="profile-bio" style={{ marginTop: '6px' }}>{profile.bio}</div>
+          <div className="tag-row" style={{ marginTop: '8px' }}>
+            <span className="tag highlight">Video Editor</span>
+            <span className="tag">Motion Graphics</span>
+            <span className="tag">AI-Assisted Creative</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div className="section-label">Software Proficiency</div>
+        <SkillBar name="After Effects" pct={95} color="#2d87ff" />
+        <SkillBar name="Photoshop" pct={80} color="#31a8ff" />
+        <SkillBar name="Premiere Pro" pct={70} color="#9999ff" />
+      </div>
+
+      <div>
+        <div className="section-label">Contact</div>
+        <div className="contact-item"><span className="contact-icon">◉</span>{profile.contact.location}</div>
+        <div className="contact-item"><span className="contact-icon">◈</span>{profile.contact.phone}</div>
+        <div className="contact-item"><span className="contact-icon">◈</span>{profile.contact.email}</div>
+      </div>
+    </div>);
+}
+
+function WorkComp({ workItems }) {
+  const [expanded, setExpanded] = useState(null);
+  return (
+    <div className="comp-work fade-in">
+      <div className="section-label" style={{ marginBottom: '12px' }}>Work Experience</div>
+      {workItems.map((w, i) =>
+      <div key={i} className={`work-item${expanded === i ? ' expanded' : ''}`} onClick={() => setExpanded(expanded === i ? null : i)}>
+          <div className="work-header">
+            <div className="work-color" style={{ background: w.color }} />
+            <div>
+              <div className="work-name">{w.name}</div>
+              <div className="work-role">{w.role}</div>
+            </div>
+            <div className="work-period">{w.period}</div>
+            <div style={{ fontSize: '8px', color: 'var(--t4)', marginLeft: '6px' }}>{expanded === i ? '▲' : '▼'}</div>
+          </div>
+          {expanded === i &&
+        <div className="work-body fade-in">
+              <div className="work-desc">{w.desc}</div>
+              <div className="work-tags">{w.tags.map((t) => <span key={t} className="work-tag">{t}</span>)}</div>
+            </div>
+        }
+        </div>
+      )}
+    </div>);
+}
+
+function ProjectsComp({ projects }) {
+  return (
+    <div className="comp-projects fade-in" style={{ padding: '16px' }}>
+      {projects.map((p, i) =>
+      <div key={i} className="project-card">
+          <div className="project-thumb">
+            {p.mediaType === 'video' ? (
+              <video src={p.mediaUrl} muted loop onMouseOver={e => e.target.play()} onMouseOut={e => {e.target.pause(); e.target.currentTime=0;}} style={{width:'100%', height:'100%', objectFit:'cover'}} />
+            ) : (
+              <img src={p.mediaUrl} style={{width:'100%', height:'100%', objectFit:'cover'}} />
+            )}
+          </div>
+          <div className="project-info">
+            <div className="project-card-name">{p.name}</div>
+            <div className="project-card-sub">{p.sub}</div>
+            <div className="project-card-client">{p.client}</div>
+          </div>
+        </div>
+      )}
+    </div>);
+}
+
+function ClientsComp({ clients }) {
+  return (
+    <div className="comp-clients fade-in">
+      <div className="section-label" style={{ marginBottom: '12px' }}>Client Work</div>
+      <div className="clients-grid">
+        {clients.map((c, i) =>
+        <div key={i} className="client-card" style={{ borderTop: `2px solid ${c.color}` }}>
+            <div className="client-name" style={{ color: c.color }}>{c.name}</div>
+            <div className="client-location">📍 {c.location}</div>
+          </div>
+        )}
+      </div>
+    </div>);
+}
+
+function ContactComp({ profile }) {
+  return (
+    <div className="comp-contact fade-in">
+      <div className="contact-card">
+        <div className="contact-name-big">{profile.name}</div>
+        <div style={{ fontSize: '10px', color: 'var(--acc)', marginBottom: '14px', letterSpacing: '.06em' }}>{profile.title}</div>
+        <div className="contact-row"><span className="contact-lbl">Email</span><span style={{ color: 'var(--t1)', fontSize: '10px' }}>{profile.contact.email}</span></div>
+        <div className="contact-row"><span className="contact-lbl">Phone</span><span style={{ color: 'var(--t1)', fontSize: '10px' }}>{profile.contact.phone}</span></div>
+      </div>
+    </div>);
+}
+
+function PropertiesPanel({ activeComp, compositions, aiMode }) {
+  const comp = compositions.find((c) => c.id === activeComp) || compositions[0];
+  return (
+    <div className="properties-panel" style={{ overflow: 'hidden', flex: 1 }}>
+      <div className="panel-header">
+        <div className="panel-icon">P</div><span className="panel-title">Properties</span>
+      </div>
+      <div className="prop-section">
+        <div className="prop-section-header"><span className="prop-section-title">Composition</span></div>
+        <div className="info-rows">
+          <div className="info-row"><span className="info-k">Name</span><span className="info-v">{comp.name}</span></div>
+          <div className="info-row"><span className="info-k">Duration</span><span className="info-v">{comp.dur}</span></div>
+          <div className="info-row"><span className="info-k">Resolution</span><span className="info-v">1920 × 1080</span></div>
+        </div>
+      </div>
+      {aiMode && (
+        <div className="ai-analysis fade-in">
+          <div className="ai-analysis-title">AI Analysis</div>
+          <div className="ai-analysis-item">Motion complexity: <span style={{ color: 'var(--acc)' }}>High</span></div>
+        </div>
+      )}
+    </div>);
+}
+
+function Timeline({ activeComp, setActiveComp, playhead, setPlayhead, aiMode, timelineTracks }) {
+  return (
+    <div className="timeline">
+      <div className="timeline-header">
+        <div className="panel-icon" style={{ background: 'var(--orange)' }}>T</div>
+        <span className="tl-title">Timeline</span>
+        <div className="tl-controls">
+          <div className="tl-timecode">{formatTime(playhead)}</div>
+        </div>
+      </div>
+      <div className="timeline-body">
+        <div className="tl-names">
+          {timelineTracks.map((t) => (
+            <div key={t.id} className="tl-track">
+              <div className="tl-track-icon" style={{ background: t.color }} />
+              <div className="tl-track-name">{t.name}</div>
+            </div>
+          ))}
+        </div>
+        <div className="tl-scrub" onClick={(e) => setPlayhead(e.nativeEvent.offsetX / e.target.offsetWidth * 100)}>
+          <div className="tl-ruler">
+            <div className="tl-playhead" style={{ left: `${playhead}%` }} />
+          </div>
+          {timelineTracks.map((t) => (
+            <div key={t.id} className="tl-track-row">
+              {t.clips.map((c, ci) => (
+                <div key={ci} className="tl-clip" style={{ left: `${c.start}%`, width: `${c.end - c.start}%`, background: t.color, opacity: 0.75 }}>{t.name}</div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>);
+}
+
 function App() {
   const [data, setData] = useState(null);
-  const [activeComp, setActiveComp] = useState('about');
+  const [activeComp, setActiveComp] = useState('projects');
   const [playhead, setPlayhead] = useState(8);
   const [aiMode, setAiMode] = useState(false);
   const [aiMsg, setAiMsg] = useState(AI_MESSAGES[0]);
@@ -260,12 +483,7 @@ function App() {
   const msgRef = useRef(0);
 
   useEffect(() => {
-    fetch('./data.json')
-      .then(res => res.json())
-      .then(d => {
-        setData(d);
-        setLoading(false);
-      });
+    fetch('./data.json').then(res => res.json()).then(d => { setData(d); setLoading(false); });
   }, []);
 
   useEffect(() => {
@@ -290,7 +508,7 @@ function App() {
     return () => clearInterval(id);
   }, []);
 
-  if (loading) return <div style={{color:'white', padding: 20}}>Loading...</div>;
+  if (loading) return <div style={{color:'white', padding: 20}}>Loading SV Workspace...</div>;
 
   const { profile, compositions, workItems, projects, clients, timelineTracks } = data;
 
@@ -300,7 +518,7 @@ function App() {
       <div className="app">
         <div className="menubar">
           <div className="menubar-brand">SV</div>
-          {['File', 'Edit', 'Composition', 'Layer', 'Effect', 'View', 'Window', 'Help'].map(m => <div key={m} className="menubar-item">{m}</div>)}
+          {['File', 'Edit', 'Composition', 'Layer', 'Help'].map(m => <div key={m} className="menubar-item">{m}</div>)}
           <div className="menubar-right">
             <span className="time-display">{new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}</span>
             <div className={`ai-badge ${aiMode ? 'active' : 'inactive'}`} onClick={() => setAiMode(!aiMode)}>
@@ -345,11 +563,11 @@ function App() {
             </div>
             <div className="viewer-content">
               {aiMode && <div className="ai-overlay"><div className="ai-scan-line active" /></div>}
-              {activeComp === 'about' && <About profile={profile} />}
-              {activeComp === 'work' && <Work workItems={workItems} />}
-              {activeComp === 'projects' && <Projects projects={projects} />}
-              {activeComp === 'clients' && <Clients clients={clients} />}
-              {activeComp === 'contact' && <Contact profile={profile} />}
+              {activeComp === 'about' && <AboutComp profile={profile} />}
+              {activeComp === 'work' && <WorkComp workItems={workItems} />}
+              {activeComp === 'projects' && <ProjectsComp projects={projects} />}
+              {activeComp === 'clients' && <ClientsComp clients={clients} />}
+              {activeComp === 'contact' && <ContactComp profile={profile} />}
             </div>
             <div className="viewer-footer">
               <div className="viewer-btn play">▶ Play</div>
@@ -360,140 +578,9 @@ function App() {
           <PropertiesPanel activeComp={activeComp} compositions={compositions} aiMode={aiMode} />
         </div>
 
-        <Timeline timelineTracks={timelineTracks} playhead={playhead} setPlayhead={setPlayhead} aiMode={aiMode} />
+        <Timeline activeComp={activeComp} setActiveComp={setActiveComp} playhead={playhead} setPlayhead={setPlayhead} aiMode={aiMode} timelineTracks={timelineTracks} />
       </div>
     </>
-  );
-}
-
-function About({ profile }) {
-  return (
-    <div className="comp-about fade-in">
-      <div className="profile-header">
-        <div className="profile-photo"><img src={profile.photo} alt="Profile" /></div>
-        <div className="profile-info">
-          <div className="profile-name">{profile.name}</div>
-          <div className="profile-title">{profile.title}</div>
-          <div className="profile-bio">{profile.bio}</div>
-        </div>
-      </div>
-      <div>
-        <div className="section-label">Contact</div>
-        {Object.entries(profile.contact).map(([k, v]) => <div key={k} className="contact-item"><b>{k}:</b> {v}</div>)}
-      </div>
-    </div>
-  );
-}
-
-function Work({ workItems }) {
-  return (
-    <div className="comp-work fade-in">
-      {workItems.map((w, i) => (
-        <div key={i} className="work-item expanded">
-          <div className="work-header">
-            <div className="work-color" style={{ background: w.color }} />
-            <div className="work-name">{w.name} — {w.role}</div>
-            <div className="work-period">{w.period}</div>
-          </div>
-          <div className="work-body"><div className="work-desc">{w.desc}</div></div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function Projects({ projects }) {
-  return (
-    <div className="comp-projects fade-in">
-      {projects.map((p, i) => (
-        <div key={i} className="project-card">
-          <div className="project-thumb">
-            {p.mediaType === 'video' ? (
-              <video src={p.mediaUrl} muted loop onMouseOver={e => e.target.play()} onMouseOut={e => {e.target.pause(); e.target.currentTime=0;}} />
-            ) : (
-              <img src={p.mediaUrl} alt={p.name} />
-            )}
-          </div>
-          <div className="project-info">
-            <div className="project-card-name">{p.name}</div>
-            <div className="project-card-client">{p.client} — {p.sub}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function Clients({ clients }) {
-  return (
-    <div className="comp-clients fade-in">
-      <div className="clients-grid">
-        {clients.map((c, i) => (
-          <div key={i} className="client-card" style={{ borderTop: `2px solid ${c.color}` }}>
-            <div className="client-name" style={{ color: c.color }}>{c.name}</div>
-            <div className="client-location">{c.location}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Contact({ profile }) {
-  return (
-    <div className="comp-contact fade-in">
-      <div className="contact-card">
-        <div className="contact-name-big">{profile.name}</div>
-        <div className="contact-row">{profile.contact.email}</div>
-        <div className="contact-row">{profile.contact.phone}</div>
-      </div>
-    </div>
-  );
-}
-
-function PropertiesPanel({ activeComp, compositions, aiMode }) {
-  const comp = compositions.find(c => c.id === activeComp);
-  return (
-    <div className="panel properties-panel">
-      <div className="panel-header"><span className="panel-title">Properties</span></div>
-      <div className="prop-section">
-        <div className="prop-section-header"><span className="prop-section-title">Composition</span></div>
-        <div className="info-rows">
-          <div className="info-row"><span className="info-k">Name</span><span className="info-v">{comp?.name}</span></div>
-          <div className="info-row"><span className="info-k">Duration</span><span className="info-v">{comp?.dur}</span></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Timeline({ timelineTracks, playhead, setPlayhead, aiMode }) {
-  return (
-    <div className="timeline">
-      <div className="timeline-header"><span className="tl-title">Timeline</span></div>
-      <div className="timeline-body">
-        <div className="tl-names">
-          {timelineTracks.map(t => (
-            <div key={t.id} className="tl-track">
-              <div className="tl-track-icon" style={{ background: t.color }} />
-              <div className="tl-track-name">{t.name}</div>
-            </div>
-          ))}
-        </div>
-        <div className="tl-scrub" onClick={(e) => setPlayhead(e.nativeEvent.offsetX / e.target.offsetWidth * 100)}>
-          <div className="tl-ruler">
-            <div className="tl-playhead" style={{ left: `${playhead}%` }} />
-          </div>
-          {timelineTracks.map(t => (
-            <div key={t.id} className="tl-track-row">
-              {t.clips.map((c, i) => (
-                <div key={i} className="tl-clip" style={{ left: `${c.start}%`, width: `${c.end - c.start}%`, background: t.color }} />
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }
 
